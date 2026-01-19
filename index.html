@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EduPath – Learn & Grow | Dark Theme</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --card: #1a1a1a;
+      --text: #e0e0e0;
+      --text-light: #a0a0a0;
+      --accent: #4da6ff;     /* bright blue for links/buttons */
+      --accent-hover: #6bb8ff;
+      --border: #2d2d2d;
+      --success: #00cc99;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #000;
+      padding: 1rem 5%;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 5%;
+    }
+
+    h1, h2 {
+      color: white;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.8rem; }
+
+    /* Pure CSS Accordion */
+    .accordion {
+      margin-bottom: 2.5rem;
+    }
+
+    .accordion-item {
+      margin-bottom: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card);
+    }
+
+    .accordion-input {
+      display: none;
+    }
+
+    .accordion-label {
+      display: block;
+      padding: 1.1rem 1.5rem;
+      background: #111;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.15rem;
+      transition: background 0.2s;
+    }
+
+    .accordion-label:hover {
+      background: #1e1e1e;
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 1.5rem;
+      background: var(--card);
+    }
+
+    .accordion-input:checked + .accordion-label {
+      background: #222;
+      color: var(--accent);
+    }
+
+    .accordion-input:checked + .accordion-label + .accordion-content {
+      max-height: 1200px; /* adjust if needed for longer content */
+      padding: 1.5rem;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.98rem;
+    }
+
+    th, td {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    th {
+      background: #111;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #161616;
+    }
+
+    /* Guidance Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.6rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 0.9rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 1.2rem;
+    }
+
+    .card li {
+      margin-bottom: 0.6rem;
+      position: relative;
+    }
+
+    .card li::before {
+      content: "→";
+      color: var(--success);
+      position: absolute;
+      left: -1.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; } /* can add hamburger later */
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">EduPath</div>
+      <div class="nav-links">
+        <a href="#school">School</a>
+        <a href="#life">20s Guidance</a>
+        <a href="#">Resources</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Welcome to EduPath</h1>
+    <p style="color: var(--text-light); max-width: 700px; margin-bottom: 3rem;">
+      Free learning & life guidance platform designed for Indian students and young adults.
+      CBSE/NCERT aligned content + practical advice for your 20s.
+    </p>
+
+    <section id="school">
+      <h2>School Education (Class 1–12)</h2>
+
+      <div class="accordion">
+        
+        <div class="accordion-item">
+          <input type="checkbox" id="class-prim" class="accordion-input">
+          <label for="class-prim" class="accordion-label">Class 1–5 (Primary)</label>
+          <div class="accordion-content">
+            <table>
+              <tr><th>Core Subjects</th><th>Additional</th></tr>
+              <tr><td>English, Hindi / Regional Language, Mathematics, Environmental Studies (EVS)</td><td>Art & Craft, Physical Education, General Knowledge</td></tr>
+            </table>
+            <p>Focus: Basics, activity-based learning, no heavy exams.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <input type="checkbox" id="class-up" class="accordion-input">
+          <label for="class-up" class="accordion-label">Class 6–8 (Upper Primary)</label>
+          <div class="accordion-content">
+            <table>
+              <tr><th>Core Subjects</th><th>Additional</th></tr>
+              <tr><td>English, Hindi, Mathematics, Science, Social Science, Third Language (optional)</td><td>Computer / IT, Art, Physical Education</td></tr>
+            </table>
+            <p>Introduction to formal Science, SST and languages like Sanskrit.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <input type="checkbox" id="class-sec" class="accordion-input">
+          <label for="class-sec" class="accordion-label">Class 9–10 (Secondary)</label>
+          <div class="accordion-content">
+            <table>
+              <tr><th>Core Subjects</th><th>Optional / Skill</th></tr>
+              <tr><td>English, Hindi/Sanskrit, Mathematics, Science, Social Science</td><td>IT / Computer Applications, AI (emerging), Physical Education</td></tr>
+            </table>
+            <p>Board exams in Class 10. Focus on concepts + application.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <input type="checkbox" id="class-sr" class="accordion-input">
+          <label for="class-sr" class="accordion-label">Class 11–12 (Senior Secondary)</label>
+          <div class="accordion-content">
+            <table>
+              <tr><th>Stream</th><th>Main Subjects</th><th>Optional</th></tr>
+              <tr><td>Science (PCM/PCB)</td><td>Physics, Chemistry, Math/Biology, English</td><td>Computer Science, Physical Education, Biotechnology</td></tr>
+              <tr><td>Commerce</td><td>Accountancy, Business Studies, Economics, English</td><td>Math / IP / PE</td></tr>
+              <tr><td>Humanities/Arts</td><td>History, Pol. Science, Geography/Sociology, English</td><td>Economics, Psychology, Fine Arts</td></tr>
+            </table>
+            <p>Choose stream wisely — impacts college & career options.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="life">
+      <h2>Guidance for Ages 20–30</h2>
+      <div class="cards">
+
+        <div class="card">
+          <h3>Career & Job Preparation</h3>
+          <ul>
+            <li>UPSC / SSC / Banking / GATE / CAT preparation</li>
+            <li>Resume, LinkedIn, interview skills</li>
+            <li>Government vs Private vs Startup paths</li>
+            <li>Free learning: SWAYAM, NPTEL, YouTube</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Health & Wellness</h3>
+          <ul>
+            <li>Home workouts, yoga, running</li>
+            <li>Mental health: stress, anxiety support</li>
+            <li>Budget Indian nutrition (dal-rice balance)</li>
+            <li>Ayushman Bharat, health insurance basics</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Investing & Finance</h3>
+          <ul>
+            <li>SIP, Mutual Funds (Groww, Zerodha)</li>
+            <li>PPF, NPS, RD, emergency fund</li>
+            <li>Tax saving under 80C</li>
+            <li>Long-term investing mindset</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Supporting Aging Parents</h3>
+          <ul>
+            <li>Common health issues (diabetes, BP)</li>
+            <li>Government schemes: NPHCE, Vayoshri</li>
+            <li>Emotional & financial planning</li>
+            <li>Balancing career & family care</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 EduPath – Made for Indian learners • Always in Dark Mode</p>
+  </footer>
+
+</body>
+</html>
