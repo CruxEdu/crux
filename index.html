@@ -1,347 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EduPath – Learn & Grow | Dark Theme</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --bg: #0f0f0f;
-      --card: #1a1a1a;
-      --text: #e0e0e0;
-      --text-light: #a0a0a0;
-      --accent: #4da6ff;     /* bright blue for links/buttons */
-      --accent-hover: #6bb8ff;
-      --border: #2d2d2d;
-      --success: #00cc99;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUX | Citizen-Driven Holistic Education</title>
+    <style>
+        /* Modern Reset & Base Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
 
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+        /* Header Design */
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #0d9488);
+            color: white;
+            text-align: center;
+            padding: 3.5rem 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
 
-    header {
-      background: #000;
-      padding: 1rem 5%;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.05em;
+        }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
-    .logo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
+        /* Interactive Age Selector Tabs */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            max-width: 800px;
+            margin: -1.5rem auto 2rem auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
 
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      margin-left: 2rem;
-      font-weight: 500;
-    }
+        .tab-btn {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            color: #4b5563;
+        }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
+        .tab-btn:hover {
+            border-color: #0d9488;
+            color: #0d9488;
+        }
 
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 5%;
-    }
+        .tab-btn.active {
+            background: #0d9488;
+            color: white;
+            border-color: #0d9488;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+        }
 
-    h1, h2 {
-      color: white;
-      margin-bottom: 1.2rem;
-    }
+        /* 2-Column Responsive Layout Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-    h1 { font-size: 2.4rem; }
-    h2 { font-size: 1.8rem; }
+        .column {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
 
-    /* Pure CSS Accordion */
-    .accordion {
-      margin-bottom: 2.5rem;
-    }
+        .column h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .accordion-item {
-      margin-bottom: 0.8rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--card);
-    }
+        .cbse-column h2 { color: #dc2626; }
+        .crux-column h2 { color: #0d9488; }
 
-    .accordion-input {
-      display: none;
-    }
+        .column-tagline {
+            font-size: 0.95rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
 
-    .accordion-label {
-      display: block;
-      padding: 1.1rem 1.5rem;
-      background: #111;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 1.15rem;
-      transition: background 0.2s;
-    }
+        /* Data Card styling */
+        .subject-card {
+            background: #f9fafb;
+            border: 1px solid #f3f4f6;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #e5e7eb;
+        }
 
-    .accordion-label:hover {
-      background: #1e1e1e;
-    }
+        .cbse-column .subject-card { border-left-color: #f87171; }
+        .crux-column .subject-card { 
+            border-left-color: #2dd4bf; 
+            background: #f0fdfa;
+        }
 
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-      padding: 0 1.5rem;
-      background: var(--card);
-    }
+        .subject-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
 
-    .accordion-input:checked + .accordion-label {
-      background: #222;
-      color: var(--accent);
-    }
+        .badge {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
 
-    .accordion-input:checked + .accordion-label + .accordion-content {
-      max-height: 1200px; /* adjust if needed for longer content */
-      padding: 1.5rem;
-    }
+        .badge-cbse { background: #fee2e2; color: #991b1b; }
+        .badge-crux { background: #ccfbf1; color: #115e59; }
 
-    /* Table styling */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      font-size: 0.98rem;
-    }
-
-    th, td {
-      padding: 0.9rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-
-    th {
-      background: #111;
-      color: white;
-      font-weight: 600;
-    }
-
-    tr:hover {
-      background: #161616;
-    }
-
-    /* Guidance Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.6rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
-    }
-
-    .card h3 {
-      color: var(--accent);
-      margin-bottom: 0.9rem;
-    }
-
-    .card ul {
-      list-style: none;
-      padding-left: 1.2rem;
-    }
-
-    .card li {
-      margin-bottom: 0.6rem;
-      position: relative;
-    }
-
-    .card li::before {
-      content: "→";
-      color: var(--success);
-      position: absolute;
-      left: -1.4rem;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--text-light);
-      border-top: 1px solid var(--border);
-      margin-top: 4rem;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; } /* can add hamburger later */
-      h1 { font-size: 2rem; }
-    }
-  </style>
+        /* Mobile View Optimization */
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .tabs-container {
+                flex-wrap: wrap;
+            }
+            .tab-btn {
+                flex: 1 1 40%;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <nav>
-      <div class="logo">EduPath</div>
-      <div class="nav-links">
-        <a href="#school">School</a>
-        <a href="#life">20s Guidance</a>
-        <a href="#">Resources</a>
-      </div>
-    </nav>
-  </header>
+    <header>
+        <h1>CRUX Alternative System</h1>
+        <p>A citizen-driven, practical, age-based system designed for holistic mastery up to age 30, shifting away from marks & percentages.</p>
+    </header>
 
-  <main>
-    <h1>Welcome to EduPath</h1>
-    <p style="color: var(--text-light); max-width: 700px; margin-bottom: 3rem;">
-      Free learning & life guidance platform designed for Indian students and young adults.
-      CBSE/NCERT aligned content + practical advice for your 20s.
-    </p>
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="switchAge('early')">Ages 10–12</button>
+        <button class="tab-btn" onclick="switchAge('mid')">Ages 16–18</button>
+        <button class="tab-btn" onclick="switchAge('adult')">Ages 22–30</button>
+    </div>
 
-    <section id="school">
-      <h2>School Education (Class 1–12)</h2>
-
-      <div class="accordion">
+    <main class="comparison-grid">
         
-        <div class="accordion-item">
-          <input type="checkbox" id="class-prim" class="accordion-input">
-          <label for="class-prim" class="accordion-label">Class 1–5 (Primary)</label>
-          <div class="accordion-content">
-            <table>
-              <tr><th>Core Subjects</th><th>Additional</th></tr>
-              <tr><td>English, Hindi / Regional Language, Mathematics, Environmental Studies (EVS)</td><td>Art & Craft, Physical Education, General Knowledge</td></tr>
-            </table>
-            <p>Focus: Basics, activity-based learning, no heavy exams.</p>
-          </div>
-        </div>
+        <section class="column cbse-column">
+            <h2>CBSE / NCERT</h2>
+            <div class="column-tagline">Metrics-driven, fixed curricula, exam focus</div>
+            
+            <div id="cbse-math" class="subject-card">
+                <h3>Mathematics</h3>
+                <p id="cbse-math-text">Memorizing abstract geometric theorems, formulas for volume, and calculating on paper to pass a 3-hour exam.</p>
+                <span class="badge badge-cbse">Focus: Marks & Rote Memory</span>
+            </div>
 
-        <div class="accordion-item">
-          <input type="checkbox" id="class-up" class="accordion-input">
-          <label for="class-up" class="accordion-label">Class 6–8 (Upper Primary)</label>
-          <div class="accordion-content">
-            <table>
-              <tr><th>Core Subjects</th><th>Additional</th></tr>
-              <tr><td>English, Hindi, Mathematics, Science, Social Science, Third Language (optional)</td><td>Computer / IT, Art, Physical Education</td></tr>
-            </table>
-            <p>Introduction to formal Science, SST and languages like Sanskrit.</p>
-          </div>
-        </div>
+            <div id="cbse-science" class="subject-card">
+                <h3>Science</h3>
+                <p id="cbse-science-text">Reading physics textbook laws on velocity and friction. Answering descriptive questions with preset definitions.</p>
+                <span class="badge badge-cbse">Focus: Percentage Score</span>
+            </div>
+        </section>
 
-        <div class="accordion-item">
-          <input type="checkbox" id="class-sec" class="accordion-input">
-          <label for="class-sec" class="accordion-label">Class 9–10 (Secondary)</label>
-          <div class="accordion-content">
-            <table>
-              <tr><th>Core Subjects</th><th>Optional / Skill</th></tr>
-              <tr><td>English, Hindi/Sanskrit, Mathematics, Science, Social Science</td><td>IT / Computer Applications, AI (emerging), Physical Education</td></tr>
-            </table>
-            <p>Board exams in Class 10. Focus on concepts + application.</p>
-          </div>
-        </div>
+        <section class="column crux-column">
+            <h2>CRUX Framework</h2>
+            <div class="column-tagline">Competency-driven, experiential, life application</div>
+            
+            <div id="crux-math" class="subject-card">
+                <h3>Practical Mathematics</h3>
+                <p id="crux-math-text">Building miniature physical bridges and structures to calculate loads, stress angles, and testing weight capacities in real-time.</p>
+                <span class="badge badge-crux">Focus: Structural Competency</span>
+            </div>
 
-        <div class="accordion-item">
-          <input type="checkbox" id="class-sr" class="accordion-input">
-          <label for="class-sr" class="accordion-label">Class 11–12 (Senior Secondary)</label>
-          <div class="accordion-content">
-            <table>
-              <tr><th>Stream</th><th>Main Subjects</th><th>Optional</th></tr>
-              <tr><td>Science (PCM/PCB)</td><td>Physics, Chemistry, Math/Biology, English</td><td>Computer Science, Physical Education, Biotechnology</td></tr>
-              <tr><td>Commerce</td><td>Accountancy, Business Studies, Economics, English</td><td>Math / IP / PE</td></tr>
-              <tr><td>Humanities/Arts</td><td>History, Pol. Science, Geography/Sociology, English</td><td>Economics, Psychology, Fine Arts</td></tr>
-            </table>
-            <p>Choose stream wisely — impacts college & career options.</p>
-          </div>
-        </div>
+            <div id="crux-science" class="subject-card">
+                <h3>Applied Science</h3>
+                <p id="crux-science-text">Designing mechanical setups with pulleys, gears, and dynamic tracks to measure velocity, air resistance, and energy losses through physical builds.</p>
+                <span class="badge badge-crux">Focus: Proof of Work</span>
+            </div>
+        </section>
 
-      </div>
-    </section>
+    </main>
 
-    <section id="life">
-      <h2>Guidance for Ages 20–30</h2>
-      <div class="cards">
+    <script>
+        const curriculumData = {
+            early: {
+                cbseMath: "Memorizing abstract geometric theorems, formulas for volume, and calculating on paper to pass a 3-hour exam.",
+                cbseScience: "Reading physics textbook laws on velocity and friction. Answering descriptive questions with preset definitions.",
+                cruxMath: "Building miniature physical bridges and structures to calculate loads, stress angles, and testing weight capacities in real-time.",
+                cruxScience: "Designing mechanical setups with pulleys, gears, and dynamic tracks to measure velocity, air resistance, and energy losses through physical builds."
+            },
+            mid: {
+                cbseMath: "Solving advanced calculus, complex integrals, and coordinate matrices via theoretical paper formulas to prep for highly competitive selection exams.",
+                cbseScience: "Memorizing the periodic table rules and reading industrial chemistry equations without ever handling materials or building active setups.",
+                cruxMath: "Writing scripts and basic algorithms to visualize functions, model predictive graphs, and calculate logistical patterns digitally.",
+                cruxScience: "Working in real labs or simulations to synthesize compounds, measure chemical kinetics safely, and study ecosystem mechanics via local fieldwork."
+            },
+            adult: {
+                cbseMath: "Usually completely separated from formal education unless pursuing a specialized university degree, focusing on theoretical academic papers.",
+                cbseScience: "Enforced specialization tracks where deep practical work is restricted by structural prerequisites and standardized institutional requirements.",
+                cruxMath: "Applying data-driven mathematics to economic models, algorithmic problem solving, and complex dynamic resource distribution in live civic projects.",
+                cruxScience: "Open-ended civic projects: building communal solar grids, engineering local water purification setups, and creating software tools with peer-reviewed proof of work."
+            }
+        };
 
-        <div class="card">
-          <h3>Career & Job Preparation</h3>
-          <ul>
-            <li>UPSC / SSC / Banking / GATE / CAT preparation</li>
-            <li>Resume, LinkedIn, interview skills</li>
-            <li>Government vs Private vs Startup paths</li>
-            <li>Free learning: SWAYAM, NPTEL, YouTube</li>
-          </ul>
-        </div>
+        function switchAge(ageGroup) {
+            // Update active tab styling
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
 
-        <div class="card">
-          <h3>Health & Wellness</h3>
-          <ul>
-            <li>Home workouts, yoga, running</li>
-            <li>Mental health: stress, anxiety support</li>
-            <li>Budget Indian nutrition (dal-rice balance)</li>
-            <li>Ayushman Bharat, health insurance basics</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Investing & Finance</h3>
-          <ul>
-            <li>SIP, Mutual Funds (Groww, Zerodha)</li>
-            <li>PPF, NPS, RD, emergency fund</li>
-            <li>Tax saving under 80C</li>
-            <li>Long-term investing mindset</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Supporting Aging Parents</h3>
-          <ul>
-            <li>Common health issues (diabetes, BP)</li>
-            <li>Government schemes: NPHCE, Vayoshri</li>
-            <li>Emotional & financial planning</li>
-            <li>Balancing career & family care</li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 EduPath – Made for Indian learners • Always in Dark Mode</p>
-  </footer>
-
+            // Inject the matching data into elements smoothly
+            document.getElementById('cbse-math-text').innerText = curriculumData[ageGroup].cbseMath;
+            document.getElementById('cbse-science-text').innerText = curriculumData[ageGroup].cbseScience;
+            document.getElementById('crux-math-text').innerText = curriculumData[ageGroup].cruxMath;
+            document.getElementById('crux-science-text').innerText = curriculumData[ageGroup].cruxScience;
+        }
+    </script>
 </body>
 </html>
