@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUX | Citizen-Driven Holistic Education</title>
     <style>
-        /* Modern Reset & Base Styling */
+        /* Modern Dark Reset & Base Styling */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,31 +14,35 @@
         }
 
         body {
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #0f172a; /* Deep black-blue background */
+            color: #f3f4f6; /* Crisp white text */
             line-height: 1.6;
             padding-bottom: 4rem;
         }
 
         /* Header Design */
         header {
-            background: linear-gradient(135deg, #1e3a8a, #0d9488);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             color: white;
             text-align: center;
-            padding: 3.5rem 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            padding: 4rem 1rem;
+            border-bottom: 1px solid #334155;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         header h1 {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             letter-spacing: -0.05em;
+            background: linear-gradient(to right, #38bdf8, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header p {
             font-size: 1.1rem;
-            opacity: 0.9;
-            max-width: 600px;
+            color: #94a3b8;
+            max-width: 650px;
             margin: 0 auto;
         }
 
@@ -48,35 +52,35 @@
             justify-content: center;
             gap: 0.75rem;
             max-width: 800px;
-            margin: -1.5rem auto 2rem auto;
+            margin: -1.5rem auto 2.5rem auto;
             padding: 0 1rem;
             position: relative;
             z-index: 10;
         }
 
         .tab-btn {
-            background: white;
-            border: 1px solid #e5e7eb;
+            background: #1e293b;
+            border: 1px solid #334155;
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
             font-weight: 600;
             border-radius: 9999px;
             cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
             transition: all 0.2s ease;
-            color: #4b5563;
+            color: #94a3b8;
         }
 
         .tab-btn:hover {
-            border-color: #0d9488;
-            color: #0d9488;
+            border-color: #2dd4bf;
+            color: #2dd4bf;
         }
 
         .tab-btn.active {
-            background: #0d9488;
-            color: white;
-            border-color: #0d9488;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            background: #2dd4bf;
+            color: #0f172a;
+            border-color: #2dd4bf;
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.4);
         }
 
         /* 2-Column Responsive Layout Grid */
@@ -90,11 +94,11 @@
         }
 
         .column {
-            background: white;
+            background: #1e293b; /* Dark card panels */
             padding: 2.5rem;
             border-radius: 16px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
         }
 
         .column h2 {
@@ -103,40 +107,46 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
-        .cbse-column h2 { color: #dc2626; }
-        .crux-column h2 { color: #0d9488; }
+        .cbse-column h2 { color: #f87171; } /* Neon Coral Red */
+        .crux-column h2 { color: #2dd4bf; } /* Neon Teal/Cyan */
 
         .column-tagline {
             font-size: 0.95rem;
-            color: #6b7280;
+            color: #94a3b8;
             margin-bottom: 2rem;
             font-style: italic;
         }
 
-        /* Data Card styling */
+        /* Content Card styling */
         .subject-card {
-            background: #f9fafb;
-            border: 1px solid #f3f4f6;
+            background: #111827;
+            border: 1px solid #1f2937;
             padding: 1.5rem;
             border-radius: 12px;
             margin-bottom: 1.5rem;
-            border-left: 4px solid #e5e7eb;
+            border-left: 4px solid #4b5563;
         }
 
         .cbse-column .subject-card { border-left-color: #f87171; }
         .crux-column .subject-card { 
             border-left-color: #2dd4bf; 
-            background: #f0fdfa;
+            background: #0f172a; /* Slightly contrast backdrop for CRUX items */
         }
 
         .subject-card h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
-            color: #111827;
+            color: #f3f4f6;
         }
 
+        .subject-card p {
+            color: #cbd5e1;
+        }
+
+        /* Neon Style Indicator Badges */
         .badge {
             display: inline-block;
             margin-top: 1rem;
@@ -145,10 +155,11 @@
             font-weight: 700;
             border-radius: 6px;
             text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .badge-cbse { background: #fee2e2; color: #991b1b; }
-        .badge-crux { background: #ccfbf1; color: #115e59; }
+        .badge-cbse { background: rgba(248, 113, 113, 0.15); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.3); }
+        .badge-crux { background: rgba(45, 212, 191, 0.15); color: #99f6e4; border: 1px solid rgba(45, 212, 191, 0.3); }
 
         /* Mobile View Optimization */
         @media (max-width: 768px) {
@@ -174,14 +185,17 @@
         <p>A citizen-driven, practical, age-based system designed for holistic mastery up to age 30, shifting away from marks & percentages.</p>
     </header>
 
+    <!-- Navigation Tabs to change content dynamically -->
     <div class="tabs-container">
         <button class="tab-btn active" onclick="switchAge('early')">Ages 10–12</button>
         <button class="tab-btn" onclick="switchAge('mid')">Ages 16–18</button>
         <button class="tab-btn" onclick="switchAge('adult')">Ages 22–30</button>
     </div>
 
+    <!-- Layout Grid holding the two columns -->
     <main class="comparison-grid">
         
+        <!-- Column 1: Traditional System -->
         <section class="column cbse-column">
             <h2>CBSE / NCERT</h2>
             <div class="column-tagline">Metrics-driven, fixed curricula, exam focus</div>
@@ -199,6 +213,7 @@
             </div>
         </section>
 
+        <!-- Column 2: CRUX Alternative System -->
         <section class="column crux-column">
             <h2>CRUX Framework</h2>
             <div class="column-tagline">Competency-driven, experiential, life application</div>
@@ -218,6 +233,7 @@
 
     </main>
 
+    <!-- Engine to handle changing content cleanly -->
     <script>
         const curriculumData = {
             early: {
