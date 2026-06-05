@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUX | Citizen-Driven Holistic Education</title>
+    <title>CRUX | Multi-Stage Progressive Education</title>
     <style>
         /* Modern Dark Reset & Base Styling */
         * {
@@ -14,8 +14,8 @@
         }
 
         body {
-            background-color: #0f172a; /* Deep black-blue background */
-            color: #f3f4f6; /* Crisp white text */
+            background-color: #0f172a; 
+            color: #f3f4f6; 
             line-height: 1.6;
             padding-bottom: 4rem;
         }
@@ -25,7 +25,7 @@
             background: linear-gradient(135deg, #1e293b, #0f172a);
             color: white;
             text-align: center;
-            padding: 4rem 1rem;
+            padding: 3.5rem 1rem;
             border-bottom: 1px solid #334155;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
@@ -34,6 +34,285 @@
             font-size: 2.5rem;
             margin-bottom: 0.75rem;
             letter-spacing: -0.05em;
+            background: linear-gradient(to right, #38bdf8, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Scrollable Standard Selector Tabs */
+        .tabs-wrapper {
+            max-width: 900px;
+            margin: -1.5rem auto 2.5rem auto;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem;
+            background: #1e293b;
+            border-radius: 9999px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome/Safari */
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #94a3b8;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            color: #2dd4bf;
+        }
+
+        .tab-btn.active {
+            background: #2dd4bf;
+            color: #0f172a;
+            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+        }
+
+        /* 2-Column Responsive Layout Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .column {
+            background: #1e293b; 
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            border: 1px solid #334155;
+        }
+
+        .column h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .cbse-column h2 { color: #f87171; } 
+        .crux-column h2 { color: #2dd4bf; } 
+
+        .column-tagline {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* Content Card styling */
+        .subject-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 1.75rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4b5563;
+        }
+
+        .cbse-column .subject-card { border-left-color: #f87171; }
+        .crux-column .subject-card { 
+            border-left-color: #2dd4bf; 
+            background: #0f172a; 
+        }
+
+        .subject-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: #f3f4f6;
+            border-bottom: 1px solid #1f2937;
+            padding-bottom: 0.5rem;
+        }
+
+        .subject-card p {
+            color: #cbd5e1;
+            font-size: 1rem;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            margin-top: 1.25rem;
+            padding: 0.3rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .badge-cbse { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.25); }
+        .badge-crux { background: rgba(45, 212, 191, 0.12); color: #99f6e4; border: 1px solid rgba(45, 212, 191, 0.25); }
+
+        /* Mobile View Optimization */
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .tabs-container {
+                border-radius: 12px;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+            }
+            .tab-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CRUX Alternative Curriculum</h1>
+        <p>A direct side-by-side comparison mapping the evolution from standardized testing frameworks to practical, citizen-built mastery.</p>
+    </header>
+
+    <div class="tabs-wrapper">
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchStandard(this, 'std5')">Std 5 (Age 10)</button>
+            <button class="tab-btn" onclick="switchStandard(this, 'std6')">Std 6 (Age 11)</button>
+            <button class="tab-btn" onclick="switchStandard(this, 'std7')">Std 7 (Age 12)</button>
+            <button class="tab-btn" onclick="switchStandard(this, 'std8')">Std 8 (Age 13)</button>
+            <button class="tab-btn" onclick="switchStandard(this, 'std9')">Std 9 (Age 14)</button>
+            <button class="tab-btn" onclick="switchStandard(this, 'std10')">Std 10 (Age 15)</button>
+        </div>
+    </div>
+
+    <main class="comparison-grid">
+        
+        <section class="column cbse-column">
+            <h2>CBSE / NCERT System</h2>
+            <div class="column-tagline">Theoretical benchmarks, textbook content, exam scoring</div>
+            
+            <div class="subject-card">
+                <h3>Mathematics</h3>
+                <p id="cbse-math-text">Loading...</p>
+                <span class="badge badge-cbse">Evaluation: Paper Tests</span>
+            </div>
+
+            <div class="subject-card">
+                <h3>Science</h3>
+                <p id="cbse-science-text">Loading...</p>
+                <span class="badge badge-cbse">Evaluation: Marks & Grade Sheets</span>
+            </div>
+        </section>
+
+        <section class="column crux-column">
+            <h2>CRUX Framework</h2>
+            <div class="column-tagline">Applied challenges, functional building, tangible outcomes</div>
+            
+            <div class="subject-card">
+                <h3>Practical Mathematics</h3>
+                <p id="crux-math-text">Loading...</p>
+                <span class="badge badge-crux">Evaluation: Verification & Functional Use</span>
+            </div>
+
+            <div class="subject-card">
+                <h3>Experiential Science</h3>
+                <p id="crux-science-text">Loading...</p>
+                <span class="badge badge-crux">Evaluation: Proof of Work Portfolio</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const structureMatrix = {
+            std5: {
+                cbseMath: "Solving abstract worksheet fractions and numeric decimals on paper without contextual reference frameworks.",
+                cbseScience: "Reading chapters on plant roots, sorting seed classification types from diagrams, and answering definitions.",
+                cruxMath: "Physically cutting raw building elements, adjusting liquid volume mixtures, and utilizing real fractions to construct basic crafts.",
+                cruxScience: "Assembling a mini-hydroponic garden station, measuring real root network expansion, and documenting live growth rates."
+            },
+            std6: {
+                cbseMath: "Memorizing operational rules for negative integers and calculating basic geometric perimeters using fixed formulas.",
+                cbseScience: "Learning symbol representations for electrical batteries and reading descriptions of conductors vs insulators.",
+                cruxMath: "Creating and balancing real ledger accounts tracking physical inventory weights and basic family micro-expense matrices.",
+                cruxScience: "Soldering a tangible physical control switch system and building multi-path flashlight models to test continuity."
+            },
+            std7: {
+                cbseMath: "Solving text-based simple equations with abstract variables (x, y) to match book keys at the back of the chapter.",
+                cbseScience: "Memorizing textual variations between uniform and non-uniform motion along with speed conversion constants.",
+                cruxMath: "Balancing tangible mechanical lever arms with unknown weight scales to find equilibrium variables naturally.",
+                cruxScience: "Constructing physical drop-ramps to chart gravity trends, timing real objects, and mapping tracking charts locally."
+            },
+            std8: {
+                cbseMath: "Practicing complex textbook exponential expressions and solving word puzzles based on indirect commercial squares.",
+                cbseScience: "Labeling pre-drawn components of a biological cell structure from blackboard illustrations for standard unit assessments.",
+                cruxMath: "Graphing real exponential scales by charting real bacterial expansion curves or tracking digital file processing speeds.",
+                cruxScience: "Assembling basic custom microscopy optics using glass drop lenses to analyze dynamic cultures extracted locally."
+            },
+            std9: {
+                cbseMath: "Writing out formal multi-step proofs for geometric triangles and calculating surface areas of ideal cones and spheres.",
+                cbseScience: "Memorizing chemical valency numbers from tables and balancing theoretical reaction sentences written on paper.",
+                cruxMath: "Building physical wood or wire structural frames to directly monitor dynamic weight limits and failure vectors.",
+                cruxScience: "Conducting chemical distillation experiments to safely isolate oils, separate mixtures, and chart temperature thresholds."
+            },
+            std10: {
+                cbseMath: "Rote-memorizing trigonometric value tables (sin, cos, tan) to process complex geometric heights from textbook diagrams.",
+                cbseScience: "Drawing trace paths for lines of light passing through glass prisms based entirely on textbook refraction rules.",
+                cruxMath: "Using practical mechanical measuring tools to compute real topographical slopes and site coordinates in the field.",
+                cruxScience: "Engineering a working parabolic thermal solar unit to map energy concentrations via real physical metrics."
+            }
+        };
+
+        function switchStandard(buttonElement, standardKey) {
+            // Drop active formatting on older state
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Instantly apply look to selected state
+            buttonElement.classList.add('active');
+
+            // Inject the data blocks smoothly
+            document.getElementById('cbse-math-text').innerText = structureMatrix[standardKey].cbseMath;
+            document.getElementById('cbse-science-text').innerText = structureMatrix[standardKey].cbseScience;
+            document.getElementById('crux-math-text').innerText = structureMatrix[standardKey].cruxMath;
+            document.getElementById('crux-science-text').innerText = structureMatrix[standardKey].cruxScience;
+        }
+
+        // Initialize display to show Std 5 instantly when the window mounts
+        window.onload = function() {
+            const firstButton = document.querySelector('.tab-btn');
+            switchStandard(firstButton, 'std5');
+        };
+    </script>
+</body>
+</html>
             background: linear-gradient(to right, #38bdf8, #2dd4bf);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
