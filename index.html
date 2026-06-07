@@ -505,6 +505,235 @@ body { flex-direction: column; overflow: auto; height: auto; }
 </tbody>
 </table>
 
+
+
+            <div class="crux-comparison-wrapper">
+    <style>
+        .table-container-matrix {
+            width: 100%;
+            max-width: 1100px;
+            margin: 2rem auto;
+            overflow-x: auto;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+            table-layout: fixed;
+        }
+
+        .table-container-matrix th {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            padding: 1rem 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .table-container-matrix th.category-col { width: 20%; }
+        .table-container-matrix th.traditional-col { width: 40%; }
+        .table-container-matrix th.crux-col { width: 40%; }
+
+        .table-container-matrix td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .table-container-matrix tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-container-matrix .category-cell {
+            font-weight: 700;
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.03);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix .traditional-cell {
+            background-color: rgba(248, 113, 113, 0.02);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix .crux-cell {
+            background-color: rgba(45, 212, 191, 0.02);
+        }
+
+        .table-container-matrix .badge-wrong {
+            color: var(--cbse-color);
+            background-color: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .table-container-matrix .badge-right {
+            color: var(--crux-color);
+            background-color: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        .table-container-matrix .cell-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .table-container-matrix .traditional-cell .cell-title { color: var(--cbse-color); }
+        .table-container-matrix .crux-cell .cell-title { color: var(--crux-color); }
+
+        .table-container-matrix .cell-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media screen and (max-width: 768px) {
+            .table-container-matrix table, 
+            .table-container-matrix thead, 
+            .table-container-matrix tbody, 
+            .table-container-matrix th, 
+            .table-container-matrix td, 
+            .table-container-matrix tr { 
+                display: block; 
+                width: auto !important;
+            }
+            .table-container-matrix thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            .table-container-matrix tr { 
+                border: 1px solid var(--border-color); 
+                margin-bottom: 1.5rem;
+                border-radius: 8px;
+                background: var(--bg-surface);
+                overflow: hidden;
+            }
+            .table-container-matrix td { 
+                border: none !important;
+                position: relative;
+                padding-left: 35% !important; 
+                border-bottom: 1px solid rgba(38, 51, 77, 0.4) !important;
+            }
+            .table-container-matrix td:last-child {
+                border-bottom: none !important;
+            }
+            .table-container-matrix td:before { 
+                position: absolute;
+                top: 1.25rem;
+                left: 1rem;
+                width: 25%; 
+                font-weight: 700;
+                color: var(--text-muted);
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .table-container-matrix td.category-cell:before { content: "Metric"; }
+            .table-container-matrix td.traditional-cell:before { content: "Legacy"; }
+            .table-container-matrix td.crux-cell:before { content: "CRUX"; }
+            
+            .table-container-matrix td.category-cell {
+                background-color: var(--bg-card);
+                padding-left: 1rem !important;
+            }
+            .table-container-matrix td.category-cell:before { content: "" !important; }
+        }
+    </style>
+
+    <div class="table-container-matrix">
+        <table>
+            <thead>
+                <tr>
+                    <th class="category-col">📋 Metric</th>
+                    <th class="traditional-col">❌ Traditional (CBSE / NCERT)</th>
+                    <th class="crux-col">✅ CRUX System</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="category-cell">🎯 Core Focus</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">ROTE LEARNING</span>
+                        <div class="cell-title">Marks over Knowledge 📚</div>
+                        <p class="cell-desc">Repetitive memorization engineered solely to pass tests. True concepts are ignored to chase textbook percentages.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">APPLICATION</span>
+                        <div class="cell-title">Conceptual Mastery 🧠</div>
+                        <p class="cell-desc">Focuses deeply on understanding, sharp critical thinking, and applying information creatively across different situations.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">⏳ Workload</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">BURNOUT</span>
+                        <div class="cell-title">12-Hour Daily Grind 🚨</div>
+                        <p class="cell-desc">Overloaded syllabus where teachers force students into extreme study hours, completely killing personal growth time.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">HEALTHY SPACE</span>
+                        <div class="cell-title">Indoor &amp; Outdoor Balance 🏃‍♂️</div>
+                        <p class="cell-desc">Structured cleanly to build motor skills, active imagination, and the genuine joy of active, real-world discovery.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">🤯 Well-being</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">HIGH STRESS</span>
+                        <div class="cell-title">Mental Torture &amp; Anxiety 📉</div>
+                        <p class="cell-desc">Ruthless tracking through competitive exams. Massive data-dumping under tight time pressure compromises long-term mental health.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">LIFE READY</span>
+                        <div class="cell-title">Real-World Prep 🚀</div>
+                        <p class="cell-desc">Practical, life-oriented education built purposefully to handle the messy, complicated, and challenging realities of adulthood.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">🔬 STEM Approach</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">THEORY ONLY</span>
+                        <div class="cell-title">Abstract Memorization 🧪</div>
+                        <p class="cell-desc">Formula manipulation on paper without tangible physical validation. Lab work is treated as a rare luxury or bureaucratic checklist.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">PROOF OF WORK</span>
+                        <div class="cell-title">Practical Science &amp; Engineering 🛠️</div>
+                        <p class="cell-desc">Built completely around experimental setups, virtual laboratories, code deployment, and open-ended engineering design loops.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+            </div>
+            
+
 <h2>Three Key Differences You'll Notice</h2>
 <ol style="margin-bottom: 2.5rem; padding-left: 1.5rem;">
 <li style="margin-bottom: 0.75rem;"><b>Integrated Blocks instead of 45-minute Chunks:</b> Traditional systems chop the day into tiny, disconnected pieces. Holistic systems use larger blocks of time so students can actually get deep into a project without a bell interrupting their flow.</li>
