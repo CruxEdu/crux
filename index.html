@@ -234,10 +234,15 @@
         }
         .legacy-tag { background: rgba(248, 113, 113, 0.1); color: var(--cbse-color); }
         .crux-tag { background: rgba(45, 212, 191, 0.1); color: var(--crux-color); }
+        .principle-tag { background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); }
 
         .card-body {
             font-size: 0.95rem;
             color: #cbd5e1;
+        }
+
+        .card-body b {
+            color: var(--text-main);
         }
 
         /* Responsive Layout Overrides */
@@ -287,7 +292,6 @@
     </main>
 
     <script>
-        // Core Comprehensive Global Data Engine Mapping Matrix 10 to 30
         const lifecycleDatabase = {
             phases: {
                 foundational: { title: "Foundational Education", span: "Ages 10-14 (Std 5-8)" },
@@ -507,12 +511,17 @@
                         { sub: "Independent Income", desc: "Generating multiple decoupled cash flows via private assets, micro-SaaS web products, or technical consulting." }
                     ]
                 },
-                28: { phase: "sovereign", label: "Age 28", system: "Upper Management Pivot",
+                28: { phase: "sovereign", label: "Age 28", system: "Partnership Vet & Scale",
                     legacy: [
-                        { sub: "Process Optimization", desc: "Focusing entirely on internal cost reduction meetings and standardized corporate governance templates." }
+                        { sub: "Process Optimization", desc: "Focusing entirely on internal cost reduction meetings and standardized corporate governance templates." },
+                        { sub: "Societal Blueprint", desc: "Rushing blindly into conventional marital pairings matching external timelines without running deep character test vectors." }
                     ],
                     crux: [
-                        { sub: "Ecosystem Strategy", desc: "Seeding, mentoring, and backing early-stage technical builders with advice and development tools." }
+                        { sub: "Ecosystem Strategy", desc: "Seeding, mentoring, and backing early-stage technical builders with advice and development tools." },
+                        { sub: "Partnership Checks: Social Circles", desc: "• <b>Talk to her mom:</b> If her mom is difficult or bitter, she is highly likely to reflect those traits over time. If her mom is genuinely nice, then she may be (though it is not an absolute guarantee) nice.<br><br>• <b>Talk to her dad:</b> If her dad is actively involved in her life, she possesses foundational self-respect and discipline. She does not pass through life craving surface-level validation from temporary relationships.<br><br>• <b>Talk to her best friend:</b> Birds of a feather flock together. Unlike your prospective partner, the friend won't be as heavily guarded. Ask what she loves to do, or ask for tips on what to gift her. If the friend suggests expensive hardware like an iPhone, be careful. If she suggests simple or heartfelt gestures like flowers or cards, she passes the check." },
+                        { sub: "Partnership Checks: Contingency Scenarios", desc: "• <b>The Career Scenario Probe:</b> Tell her you have a job offer that doubles your pay, but the new manager is notoriously toxic, driving grueling hours and weekend shifts. If she insists you take it solely for the capital, dump her. If she prioritizes your health and mental peace, she passes. If she works and emphasizes, <i>'I make XX amount and our combined baseline is already enough,'</i> she clears with distinction.<br><br>• <b>The Kinship Asset Allocation Probe:</b> Tell her a cousin faces a severe financial crisis and needs money with low odds of repayment. If she outright blocks it without listening, recognize the lack of empathy. If she prompts for your justification and supports allocating the capital when she learns it is safely going toward critical medicine for his father, she passes." },
+                        { sub: "Partnership Operational Rules", desc: "• <b>Contained Conflict:</b> A fight should never leave the room.<br><br>• <b>Unified External Front:</b> Never speak ill of your partner in front of others.<br><br>• <b>Family Boundaries:</b> Never badmouth your partner’s family.<br><br>• <b>Fiscal Transparency:</b> Discuss your financial situation, goals, and core beliefs openly. Ensure both of you are completely aligned when it comes to money and future compounding plans." },
+                        { sub: "The Long Horizon Perspective", desc: "Parents will eventually pass on; brothers and sisters will become fully occupied with their own families. One day, your children will grow to have lives and trajectories of their own. Your partner is the singular human who will remain fixed directly by your side through it all." }
                     ]
                 },
                 29: { phase: "sovereign", label: "Age 29", system: "Peak Corporate Run",
@@ -560,11 +569,9 @@
 
         // Handle Side Navigation Changes
         function selectPhase(phaseKey) {
-            // Manage Active Styling Classes
             document.querySelectorAll(".phase-btn").forEach(b => b.classList.remove("active"));
             document.getElementById(`phase-btn-${phaseKey}`).classList.add("active");
 
-            // Filter out and rebuild the horizontal age timeline bar
             const timeline = document.getElementById("ageTimeline");
             timeline.innerHTML = "";
 
@@ -584,7 +591,6 @@
                 }
             });
 
-            // Ensure smooth interface generation on phase shift
             if (firstAgeInPhase && lifecycleDatabase.nodes[currentActiveAge]?.phase !== phaseKey) {
                 renderAgeNode(firstAgeInPhase);
             } else {
@@ -597,12 +603,10 @@
             currentActiveAge = ageKey;
             const node = lifecycleDatabase.nodes[ageKey];
 
-            // Reassign timeline highlight positions
             document.querySelectorAll(".age-btn").forEach(b => b.classList.remove("active"));
             const targetBtn = document.getElementById(`age-btn-${ageKey}`);
             if (targetBtn) targetBtn.classList.add("active");
 
-            // Populate Metadata Blocks
             document.getElementById("viewTitle").innerText = `${node.label} — ${node.system}`;
             
             const legacyContainer = document.getElementById("legacyContainer");
@@ -611,12 +615,10 @@
             legacyContainer.innerHTML = "";
             cruxContainer.innerHTML = "";
 
-            // Inject Traditional Cards
             node.legacy.forEach(item => {
                 legacyContainer.appendChild(createCard(item.sub, item.desc, "legacy"));
             });
 
-            // Inject Crux Alternative Cards
             node.crux.forEach(item => {
                 cruxContainer.appendChild(createCard(item.sub, item.desc, "crux"));
             });
@@ -626,17 +628,25 @@
         function createCard(subject, description, type) {
             const card = document.createElement("div");
             card.className = `subject-card ${type}-card`;
+            
+            let tagText = type === 'legacy' ? 'Theory Check' : 'Proof of Work';
+            let tagClass = `${type}-tag`;
+
+            if (subject.includes("Partnership") || subject.includes("Horizon")) {
+                tagText = "Partnership Matrix";
+                tagClass = "principle-tag";
+            }
+
             card.innerHTML = `
                 <div class="card-meta">
                     <span class="subject-name">${subject}</span>
-                    <span class="tag ${type}-tag">${type === 'legacy' ? 'Theory Check' : 'Proof of Work'}</span>
+                    <span class="tag ${tagClass}">${tagText}</span>
                 </div>
                 <div class="card-body">${description}</div>
             `;
             return card;
         }
 
-        // Boot Up Engine on Lifecycle Entry
         window.onload = initApp;
     </script>
 </body>
