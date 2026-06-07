@@ -662,6 +662,154 @@ body { flex-direction: column; overflow: auto; height: auto; }
                 background-color: var(--bg-card);
                 padding-left: 1rem !important;
             }
+
+
+<div class="crux-comparison-wrapper">
+    <style>
+        .table-container-matrix {
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow-x: auto;
+            background: var(--bg-surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+            table-layout: fixed;
+        }
+
+        .table-container-matrix th {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            padding: 1.1rem 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .table-container-matrix th.category-col { width: 18%; }
+        .table-container-matrix th.traditional-col { width: 41%; }
+        .table-container-matrix th.crux-col { width: 41%; }
+
+        .table-container-matrix td {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            word-wrap: break-word;
+            line-height: 1.6;
+        }
+
+        .table-container-matrix tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-container-matrix .category-cell {
+            font-weight: 700;
+            color: var(--accent-blue);
+            background-color: rgba(56, 189, 248, 0.02);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix .traditional-cell {
+            background-color: rgba(248, 113, 113, 0.01);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .table-container-matrix .crux-cell {
+            background-color: rgba(45, 212, 191, 0.01);
+        }
+
+        .table-container-matrix .badge-wrong {
+            color: var(--cbse-color);
+            background-color: rgba(248, 113, 113, 0.1);
+            border: 1px solid rgba(248, 113, 113, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .table-container-matrix .badge-right {
+            color: var(--crux-color);
+            background-color: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        .table-container-matrix .cell-text {
+            font-size: 0.9rem;
+            margin: 0;
+            color: #cbd5e1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .table-container-matrix table, 
+            .table-container-matrix thead, 
+            .table-container-matrix tbody, 
+            .table-container-matrix th, 
+            .table-container-matrix td, 
+            .table-container-matrix tr { 
+                display: block; 
+                width: auto !important;
+            }
+            .table-container-matrix thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            .table-container-matrix tr { 
+                border: 1px solid var(--border-color); 
+                margin-bottom: 2rem;
+                border-radius: 8px;
+                background: var(--bg-surface);
+                overflow: hidden;
+            }
+            .table-container-matrix td { 
+                border: none !important;
+                position: relative;
+                padding-left: 35% !important; 
+                border-bottom: 1px solid rgba(38, 51, 77, 0.5) !important;
+            }
+            .table-container-matrix td:last-child {
+                border-bottom: none !important;
+            }
+            .table-container-matrix td:before { 
+                position: absolute;
+                top: 1.25rem;
+                left: 1rem;
+                width: 25%; 
+                font-weight: 700;
+                color: var(--text-muted);
+                font-size: 0.7rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .table-container-matrix td.category-cell:before { content: "Category"; }
+            .table-container-matrix td.traditional-cell:before { content: "Legacy"; }
+            .table-container-matrix td.crux-cell:before { content: "CRUX Node"; }
+            
+            .table-container-matrix td.category-cell {
+                background-color: var(--bg-card);
+                padding-left: 1rem !important;
+            }
             .table-container-matrix td.category-cell:before { content: "" !important; }
         }
     </style>
@@ -670,69 +818,118 @@ body { flex-direction: column; overflow: auto; height: auto; }
         <table>
             <thead>
                 <tr>
-                    <th class="category-col">📋 Metric</th>
-                    <th class="traditional-col">❌ Traditional (CBSE / NCERT)</th>
-                    <th class="crux-col">✅ CRUX System</th>
+                    <th class="category-col">📋 Category</th>
+                    <th class="traditional-col">❌ Traditional System (CBSE / NCERT)</th>
+                    <th class="crux-col">✅ The CRUX System</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="category-cell">🎯 Core Focus</td>
                     <td class="traditional-cell">
-                        <span class="badge-wrong">ROTE LEARNING</span>
-                        <div class="cell-title">Marks over Knowledge 📚</div>
-                        <p class="cell-desc">Repetitive memorization engineered solely to pass tests. True concepts are ignored to chase textbook percentages.</p>
+                        <span class="badge-wrong">MARKS MATRIX</span>
+                        <p class="cell-text">❌ It's all about marks, not real knowledge.<br>❌ Rote learning &amp; repetitive memorization.</p>
                     </td>
                     <td class="crux-cell">
-                        <span class="badge-right">APPLICATION</span>
-                        <div class="cell-title">Conceptual Mastery 🧠</div>
-                        <p class="cell-desc">Focuses deeply on understanding, sharp critical thinking, and applying information creatively across different situations.</p>
+                        <span class="badge-right">UNDERSTANDING</span>
+                        <p class="cell-text">✅ Conceptual learning (emphasizes understanding, critical thinking and applying knowledge in varied context).</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category-cell">⏳ Workload</td>
+                    <td class="category-cell">🧠 Pressure &amp; Well-being</td>
                     <td class="traditional-cell">
-                        <span class="badge-wrong">BURNOUT</span>
-                        <div class="cell-title">12-Hour Daily Grind 🚨</div>
-                        <p class="cell-desc">Overloaded syllabus where teachers force students into extreme study hours, completely killing personal growth time.</p>
+                        <span class="badge-wrong">MENTAL EXHAUSTION</span>
+                        <p class="cell-text">❌ Competitive exams = mental torture.<br>❌ Pressure to memorize large volumes of information, especially under time constraints, can increase stress and anxiety.</p>
                     </td>
                     <td class="crux-cell">
-                        <span class="badge-right">HEALTHY SPACE</span>
-                        <div class="cell-title">Indoor &amp; Outdoor Balance 🏃‍♂️</div>
-                        <p class="cell-desc">Structured cleanly to build motor skills, active imagination, and the genuine joy of active, real-world discovery.</p>
+                        <span class="badge-right">LIFE OBJECTIVES</span>
+                        <p class="cell-text">✅ Real world career building (Set goals, learn skills, network, showcase achievements, stay adaptable).<br>✅ Practical, life-oriented education that truly prepares individuals for the complex and often messy realities of adulthood.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category-cell">🤯 Well-being</td>
+                    <td class="category-cell">⏳ Workload &amp; Balance</td>
                     <td class="traditional-cell">
-                        <span class="badge-wrong">HIGH STRESS</span>
-                        <div class="cell-title">Mental Torture &amp; Anxiety 📉</div>
-                        <p class="cell-desc">Ruthless tracking through competitive exams. Massive data-dumping under tight time pressure compromises long-term mental health.</p>
+                        <span class="badge-wrong">STUDY GRIND</span>
+                        <p class="cell-text">❌ Overloaded syllabus with teachers forcing students to dedicate 12 hours into studies.<br>❌ Zero indoor-outdoor activities.<br>❌ Zero outdoor activities.</p>
                     </td>
                     <td class="crux-cell">
-                        <span class="badge-right">LIFE READY</span>
-                        <div class="cell-title">Real-World Prep 🚀</div>
-                        <p class="cell-desc">Practical, life-oriented education built purposefully to handle the messy, complicated, and challenging realities of adulthood.</p>
+                        <span class="badge-right">BALANCED LIVING</span>
+                        <p class="cell-text">✅ Balanced indoor-outdoor activities to develop motor skills, creativity and joy in discovery.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td class="category-cell">🔬 STEM Approach</td>
+                    <td class="category-cell">🔬 Science &amp; Math</td>
                     <td class="traditional-cell">
-                        <span class="badge-wrong">THEORY ONLY</span>
-                        <div class="cell-title">Abstract Memorization 🧪</div>
-                        <p class="cell-desc">Formula manipulation on paper without tangible physical validation. Lab work is treated as a rare luxury or bureaucratic checklist.</p>
+                        <span class="badge-wrong">BOOKISH ONLY</span>
+                        <p class="cell-text">❌ Barely any hands-on science practicals.</p>
                     </td>
                     <td class="crux-cell">
-                        <span class="badge-right">PROOF OF WORK</span>
-                        <div class="cell-title">Practical Science &amp; Engineering 🛠️</div>
-                        <p class="cell-desc">Built completely around experimental setups, virtual laboratories, code deployment, and open-ended engineering design loops.</p>
+                        <span class="badge-right">ACTION HEAVY</span>
+                        <p class="cell-text">✅ 2,680 hands-on science activities 👩‍🔬<br>✅ 80 hands-on mathematics activities (implement trigonometry in real life).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">🛠️ Functional Skills</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">DEFICIT</span>
+                        <p class="cell-text">❌ Zero real life skills.<br>❌ Basic income tax return e-filing (Not taught/unavailable).</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">INDEPENDENCE</span>
+                        <p class="cell-text">✅ 62 Real life skills 🤹<br>✅ Basic Income tax return (ITR 1) e-filing.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">❤️ Adulthood &amp; Family</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">SOCIETAL PRESSURE</span>
+                        <p class="cell-text">❌ Dealing with Toxic elders.<br>❌ No dating/marriage advice. Hence, many regret later, feel lonely &amp; hollow in their thirties &amp; deal with fights with wrong life partner. Right age of getting married is around 26 to 35 years, but elders keep their children busy with "9 to 5" jobs or foreign education even after age 35.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">EMOTIONAL INTEL</span>
+                        <p class="cell-text">✅ Tips on falling in love, choosing right life partner, checking red flags before getting married.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">💵 Money Management</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">STATUS TRAP</span>
+                        <p class="cell-text">❌ Elders obsessed with grades &amp; wealth accumulation.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">LITERACY</span>
+                        <p class="cell-text">✅ Financial literacy (in std 10, with 10 chapters + practical, hands-on approach).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">🎨 Co-Curriculars</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">IGNORED</span>
+                        <p class="cell-text">❌ Zero extra curricular activities.</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">INTEGRATED</span>
+                        <p class="cell-text">✅ 15 extra curricular activities integrated 🧑‍🎤<br>✅ Virtual field trips (geology, chemistry, biology, etc).</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="category-cell">📋 Progress Metrics</td>
+                    <td class="traditional-cell">
+                        <span class="badge-wrong">MARKS ONLY</span>
+                        <p class="cell-text">❌ Only academic report card (subjects with marks breakdown).</p>
+                    </td>
+                    <td class="crux-cell">
+                        <span class="badge-right">CHARACTER METRICS</span>
+                        <p class="cell-text">✅ Truly holistic report card.<br>✅ Civic sense. No theory. Only practical.</p>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-            </div>
+</div>
             
+
+                
 
 <h2>Three Key Differences You'll Notice</h2>
 <ol style="margin-bottom: 2.5rem; padding-left: 1.5rem;">
