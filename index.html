@@ -3,313 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUX | Multi-Stage Progressive Education</title>
+    <title>CRUX | Progressive Lifecycle Mastery Matrix</title>
     <style>
-        /* Modern Dark Reset & Base Styling */
+        :root {
+            --bg-main: #090d16;
+            --bg-surface: #131926;
+            --bg-card: #1e2638;
+            --border-color: #26334d;
+            --text-main: #f3f4f6;
+            --text-muted: #94a3b8;
+            --cbse-color: #f87171;
+            --cbse-glow: rgba(248, 113, 113, 0.15);
+            --crux-color: #2dd4bf;
+            --crux-glow: rgba(45, 212, 191, 0.15);
+            --accent-blue: #38bdf8;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: #0f172a; 
-            color: #f3f4f6; 
-            line-height: 1.6;
-            padding-bottom: 4rem;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Header Design */
-        header {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: white;
-            text-align: center;
-            padding: 3.5rem 1rem;
-            border-bottom: 1px solid #334155;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        /* App Layout Sidebar */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-surface);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+        .brand {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
             letter-spacing: -0.05em;
-            background: linear-gradient(to right, #38bdf8, #2dd4bf);
+            background: linear-gradient(to right, var(--accent-blue), var(--crux-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        header p {
-            font-size: 1.1rem;
-            color: #94a3b8;
-            max-width: 700px;
-            margin: 0 auto;
+        .brand p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
         }
 
-        /* Scrollable Standard Selector Tabs */
-        .tabs-wrapper {
-            max-width: 900px;
-            margin: -1.5rem auto 2.5rem auto;
-            padding: 0 1rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .tabs-container {
+        .phase-navigation {
+            padding: 1.5rem 1rem;
             display: flex;
-            justify-content: flex-start;
+            flex-direction: column;
             gap: 0.5rem;
-            overflow-x: auto;
-            padding: 0.5rem;
-            background: #1e293b;
-            border-radius: 9999px;
-            border: 1px solid #334155;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            overflow-y: auto;
         }
 
-        .tabs-container::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
-        }
-
-        .tab-btn {
+        .phase-btn {
             background: transparent;
             border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 0.95rem;
+            color: var(--text-muted);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 9999px;
             cursor: pointer;
             transition: all 0.2s ease;
-            color: #94a3b8;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phase-btn span:last-child {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.7;
+        }
+
+        .phase-btn:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+        }
+
+        .phase-btn.active {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-blue);
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        /* Main View Window */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Age Timeline Navigation Sub-Bar */
+        .timeline-bar {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .timeline-bar::-webkit-scrollbar { display: none; }
+
+        .age-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
             white-space: nowrap;
-            flex: 1;
-            text-align: center;
+            transition: all 0.2s ease;
         }
 
-        .tab-btn:hover {
-            color: #2dd4bf;
+        .age-btn:hover {
+            border-color: var(--text-muted);
+            color: var(--text-main);
         }
 
-        .tab-btn.active {
-            background: #2dd4bf;
-            color: #0f172a;
-            box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+        .age-btn.active {
+            background: var(--crux-color);
+            color: var(--bg-main);
+            border-color: var(--crux-color);
+            box-shadow: 0 0 15px var(--crux-glow);
         }
 
-        /* 2-Column Responsive Layout Grid */
-        .comparison-grid {
+        /* Content Scrollspace */
+        .workspace {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2.5rem;
+        }
+
+        .view-header {
+            margin-bottom: 2rem;
+        }
+        .view-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+        .view-header p {
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Comparison Split Layout Matrix */
+        .matrix-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            gap: 2.5rem;
+            align-items: start;
         }
 
-        .column {
-            background: #1e293b; 
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-            border: 1px solid #334155;
+        .matrix-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
-        .column h2 {
-            font-size: 1.75rem;
-            margin-bottom: 0.25rem;
+        .matrix-column h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            letter-spacing: -0.02em;
         }
+        .legacy-title { color: var(--cbse-color); }
+        .crux-title { color: var(--crux-color); }
 
-        .cbse-column h2 { color: #f87171; } 
-        .crux-column h2 { color: #2dd4bf; } 
-
-        .column-tagline {
-            font-size: 0.95rem;
-            color: #94a3b8;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        /* Content Card styling */
+        /* Dynamic Subject Cards */
         .subject-card {
-            background: #111827;
-            border: 1px solid #1f2937;
-            padding: 1.75rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #4b5563;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .cbse-column .subject-card { border-left-color: #f87171; }
-        .crux-column .subject-card { 
-            border-left-color: #2dd4bf; 
-            background: #0f172a; 
+        .subject-card:hover {
+            transform: translateY(-2px);
         }
+        .legacy-card:hover { border-color: var(--cbse-color); box-shadow: 0 8px 24px var(--cbse-glow); }
+        .crux-card:hover { border-color: var(--crux-color); box-shadow: 0 8px 24px var(--crux-glow); }
 
-        .subject-card h3 {
-            font-size: 1.3rem;
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 0.75rem;
-            color: #f3f4f6;
-            border-bottom: 1px solid #1f2937;
-            padding-bottom: 0.5rem;
         }
 
-        .subject-card p {
-            color: #cbd5e1;
-            font-size: 1rem;
-        }
-
-        /* Badges */
-        .badge {
-            display: inline-block;
-            margin-top: 1.25rem;
-            padding: 0.3rem 0.75rem;
-            font-size: 0.75rem;
+        .subject-name {
+            font-size: 1.1rem;
             font-weight: 700;
-            border-radius: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--text-main);
         }
 
-        .badge-cbse { background: rgba(248, 113, 113, 0.12); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.25); }
-        .badge-crux { background: rgba(45, 212, 191, 0.12); color: #99f6e4; border: 1px solid rgba(45, 212, 191, 0.25); }
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+        .legacy-tag { background: rgba(248, 113, 113, 0.1); color: var(--cbse-color); }
+        .crux-tag { background: rgba(45, 212, 191, 0.1); color: var(--crux-color); }
 
-        /* Mobile View Optimization */
-        @media (max-width: 768px) {
-            .comparison-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .tabs-container {
-                border-radius: 12px;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-            }
-            .tab-btn {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.85rem;
-            }
+        .card-body {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        /* Responsive Layout Overrides */
+        @media (max-width: 1024px) {
+            body { flex-direction: column; overflow: auto; height: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .phase-navigation { flex-direction: row; overflow-x: auto; }
+            .main-content { height: auto; }
+            .matrix-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .workspace { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>CRUX Alternative Curriculum</h1>
-        <p>A direct side-by-side comparison mapping the evolution from standardized testing frameworks to practical, citizen-built mastery.</p>
-    </header>
-
-    <div class="tabs-wrapper">
-        <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchStandard(this, 'std5')">Std 5 (Age 10)</button>
-            <button class="tab-btn" onclick="switchStandard(this, 'std6')">Std 6 (Age 11)</button>
-            <button class="tab-btn" onclick="switchStandard(this, 'std7')">Std 7 (Age 12)</button>
-            <button class="tab-btn" onclick="switchStandard(this, 'std8')">Std 8 (Age 13)</button>
-            <button class="tab-btn" onclick="switchStandard(this, 'std9')">Std 9 (Age 14)</button>
-            <button class="tab-btn" onclick="switchStandard(this, 'std10')">Std 10 (Age 15)</button>
+    <aside class="sidebar">
+        <div class="brand">
+            <h1>CRUX MATRIX</h1>
+            <p>Lifelong Progressive Evolution</p>
         </div>
-    </div>
+        <nav class="phase-navigation" id="phaseNav">
+            </nav>
+    </aside>
 
-    <main class="comparison-grid">
-        
-        <section class="column cbse-column">
-            <h2>CBSE / NCERT System</h2>
-            <div class="column-tagline">Theoretical benchmarks, textbook content, exam scoring</div>
-            
-            <div class="subject-card">
-                <h3>Mathematics</h3>
-                <p id="cbse-math-text">Loading...</p>
-                <span class="badge badge-cbse">Evaluation: Paper Tests</span>
+    <main class="main-content">
+        <div class="timeline-bar" id="ageTimeline">
             </div>
 
-            <div class="subject-card">
-                <h3>Science</h3>
-                <p id="cbse-science-text">Loading...</p>
-                <span class="badge badge-cbse">Evaluation: Marks & Grade Sheets</span>
-            </div>
-        </section>
-
-        <section class="column crux-column">
-            <h2>CRUX Framework</h2>
-            <div class="column-tagline">Applied challenges, functional building, tangible outcomes</div>
-            
-            <div class="subject-card">
-                <h3>Practical Mathematics</h3>
-                <p id="crux-math-text">Loading...</p>
-                <span class="badge badge-crux">Evaluation: Verification & Functional Use</span>
+        <div class="workspace">
+            <div class="view-header">
+                <h2 id="viewTitle">Loading Phase...</h2>
+                <p id="viewSubtitle">Select an age benchmark from above to explore track metrics.</p>
             </div>
 
-            <div class="subject-card">
-                <h3>Experiential Science</h3>
-                <p id="crux-science-text">Loading...</p>
-                <span class="badge badge-crux">Evaluation: Proof of Work Portfolio</span>
-            </div>
-        </section>
+            <div class="matrix-grid">
+                <div class="matrix-column">
+                    <h3 class="legacy-title">Traditional Framework Track</h3>
+                    <div id="legacyContainer" class="matrix-column"></div>
+                </div>
 
+                <div class="matrix-column">
+                    <h3 class="crux-title">CRUX Adaptive Ecosystem</h3>
+                    <div id="cruxContainer" class="matrix-column"></div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script>
-        const structureMatrix = {
-            std5: {
-                cbseMath: "Solving abstract worksheet fractions and numeric decimals on paper without contextual reference frameworks.",
-                cbseScience: "Reading chapters on plant roots, sorting seed classification types from diagrams, and answering definitions.",
-                cruxMath: "Physically cutting raw building elements, adjusting liquid volume mixtures, and utilizing real fractions to construct basic crafts.",
-                cruxScience: "Assembling a mini-hydroponic garden station, measuring real root network expansion, and documenting live growth rates."
+        // Core Comprehensive Global Data Engine Mapping Matrix 10 to 30
+        const lifecycleDatabase = {
+            phases: {
+                foundational: { title: "Foundational Education", span: "Ages 10-14 (Std 5-8)" },
+                secondary:    { title: "Advanced Scholastic",  span: "Ages 15-18 (Std 9-12)" },
+                specialist:   { title: "Deep Specialization",  span: "Ages 19-24 (Higher Ed)" },
+                sovereign:    { title: "Sovereign Mastery",    span: "Ages 25-30 (Autonomy)" }
             },
-            std6: {
-                cbseMath: "Memorizing operational rules for negative integers and calculating basic geometric perimeters using fixed formulas.",
-                cbseScience: "Learning symbol representations for electrical batteries and reading descriptions of conductors vs insulators.",
-                cruxMath: "Creating and balancing real ledger accounts tracking physical inventory weights and basic family micro-expense matrices.",
-                cruxScience: "Soldering a tangible physical control switch system and building multi-path flashlight models to test continuity."
-            },
-            std7: {
-                cbseMath: "Solving text-based simple equations with abstract variables (x, y) to match book keys at the back of the chapter.",
-                cbseScience: "Memorizing textual variations between uniform and non-uniform motion along with speed conversion constants.",
-                cruxMath: "Balancing tangible mechanical lever arms with unknown weight scales to find equilibrium variables naturally.",
-                cruxScience: "Constructing physical drop-ramps to chart gravity trends, timing real objects, and mapping tracking charts locally."
-            },
-            std8: {
-                cbseMath: "Practicing complex textbook exponential expressions and solving word puzzles based on indirect commercial squares.",
-                cbseScience: "Labeling pre-drawn components of a biological cell structure from blackboard illustrations for standard unit assessments.",
-                cruxMath: "Graphing real exponential scales by charting real bacterial expansion curves or tracking digital file processing speeds.",
-                cruxScience: "Assembling basic custom microscopy optics using glass drop lenses to analyze dynamic cultures extracted locally."
-            },
-            std9: {
-                cbseMath: "Writing out formal multi-step proofs for geometric triangles and calculating surface areas of ideal cones and spheres.",
-                cbseScience: "Memorizing chemical valency numbers from tables and balancing theoretical reaction sentences written on paper.",
-                cruxMath: "Building physical wood or wire structural frames to directly monitor dynamic weight limits and failure vectors.",
-                cruxScience: "Conducting chemical distillation experiments to safely isolate oils, separate mixtures, and chart temperature thresholds."
-            },
-            std10: {
-                cbseMath: "Rote-memorizing trigonometric value tables (sin, cos, tan) to process complex geometric heights from textbook diagrams.",
-                cbseScience: "Drawing trace paths for lines of light passing through glass prisms based entirely on textbook refraction rules.",
-                cruxMath: "Using practical mechanical measuring tools to compute real topographical slopes and site coordinates in the field.",
-                cruxScience: "Engineering a working parabolic thermal solar unit to map energy concentrations via real physical metrics."
-            }
-        };
+            nodes: {
+                // Foundational Phase (Ages 10-14)
+                10: { phase: "foundational", label: "Age 10 (Std 5)", system: "Middle School Entry",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Solving numeric textbook fraction worksheets without contextual physical references." },
+                        { sub: "Science", desc: "Memorizing diagrams of taproots vs fibrous roots and answering matching questions." },
+                        { sub: "English", desc: "Identifying nouns, adjectives, and fill-in-the-blank grammar sentences from textbooks." },
+                        { sub: "History", desc: "Rote memorization of ancient empire timelines, emperors, and dynasty dates for written tests." }
+                    ],
+                    crux: [
+                        { sub: "Practical Mathematics", desc: "Using fractions and ratios to scale ingredient volumes or physical components for custom physical items." },
+                        { sub: "Experiential Science", desc: "Designing a functioning home hydroponics jar; measuring real nutrient rates and root extension tracking." },
+                        { sub: "Applied Communications", desc: "Writing direct, persuasive pitches to acquire real tools, assets, or feedback from local peers." },
+                        { sub: "Historical Frameworks", desc: "Tracing local community infrastructure evolution back 100 years via physical field mapping and interviews." }
+                    ]
+                },
+                11: { phase: "foundational", label: "Age 11 (Std 6)", system: "Middle School Framework",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Computing geometric perimeters and calculating basic multi-digit long divisions on paper." },
+                        { sub: "Science", desc: "Copying electrical switch symbols and textbook representations of transparent vs opaque items." },
+                        { sub: "English", desc: "Writing standard essays on static themes like 'My Summer Vacation' with strict format requirements." },
+                        { sub: "History", desc: "Reading fixed accounts of early human nomadic routes and basic gatherer tools from textbooks." }
+                    ],
+                    crux: [
+                        { sub: "Practical Mathematics", desc: "Structuring ledger accounts tracking inventory assets, tool wear degradation, and micro-expense scales." },
+                        { sub: "Experiential Science", desc: "Soldering basic physical control switches and custom multi-path flashlights to test real system circuit continuities." },
+                        { sub: "Applied Communications", desc: "Formulating crisp, objective project logs and process documentation guides for peers to repeat." },
+                        { sub: "Historical Frameworks", desc: "Analyzing technological shifts from simple mechanical levers to automated systems within local commerce." }
+                    ]
+                },
+                12: { phase: "foundational", label: "Age 12 (Std 7)", system: "Intermediate Core",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Evaluating textbook variables (x, y) to balance basic algebraic values shown at chapter ends." },
+                        { sub: "Science", desc: "Memorizing definitions of uniform vs non-uniform motion along with speed conversion constants." },
+                        { sub: "English", desc: "Parsing complex sentences into subject, object, and predicate components for written exams." },
+                        { sub: "History", desc: "Memorizing medieval conquest successions, regional rulers, and administrative tax edits." }
+                    ],
+                    crux: [
+                        { sub: "Practical Mathematics", desc: "Calibrating physical balance beams and variable mechanical counterweights to figure out algebraic unknowns physically." },
+                        { sub: "Experiential Science", desc: "Constructing gravity-drop track channels to measure acceleration profiles, charting real curves manually." },
+                        { sub: "Applied Communications", desc: "Directing small-team syncs, assigning responsibilities, and recording progress transparently." },
+                        { sub: "Historical Frameworks", desc: "Mapping historical trade routes against current shipping logistics to identify cost variations." }
+                    ]
+                },
+                13: { phase: "foundational", label: "Age 13 (Std 8)", system: "Pre-Secondary Benchmarks",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Calculating squares, square roots, and solving abstract direct-inverse proportion puzzles." },
+                        { sub: "Science", desc: "Labeling pre-drawn biological cellular elements copied directly from blackboard slides." },
+                        { sub: "English", desc: "Rote-memorizing definitions for figures of speech like metaphors and similes for comprehension tests." },
+                        { sub: "History", desc: "Reading structured timelines detailing industrial revolutions and manufacturing transitions globally." }
+                    ],
+                    crux: [
+                        { sub: "Practical Mathematics", desc: "Graphing exponential change maps by counting real mold growths or tracking file transmission speeds." },
+                        { sub: "Experiential Science", desc: "Assembling custom multi-lens optical tube configurations to inspect microscopic river samples." },
+                        { sub: "Applied Communications", desc: "Structuring clean, logical multi-argument debate points to advocate for technical tool procurement." },
+                        { sub: "Historical Frameworks", desc: "Replicating historical production workflows (e.g., spinning, casting) to evaluate structural limits." }
+                    ]
+                },
+                14: { phase: "foundational", label: "Age 14 (Std 9)", system: "Secondary Foundation",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Writing formal geometric proofs for standard triangles using rigid axiomatic frameworks." },
+                        { sub: "Science", desc: "Memorizing fixed chemical valency numbers from tables and balancing equations on paper." },
+                        { sub: "English", desc: "Analyzing assigned classic literature chapters to extract predefined thematic insights for testing." },
+                        { sub: "History", desc: "Tracking dates, declarations, and text-heavy summaries of major global revolutions." }
+                    ],
+                    crux: [
+                        { sub: "Practical Mathematics", desc: "Building structural wood framing joints to directly log structural failure thresholds under loading." },
+                        { sub: "Experiential Science", desc: "Operating physical distillation rigs to cleanly separate essential fluids and record thermal charts." },
+                        { sub: "Applied Communications", desc: "Pitching functional solution proposals to community groups, handling pushback with real-world data." },
+                        { sub: "Historical Frameworks", desc: "Deconstructing historic political conflicts by modeling modern digital disinformation strategies." }
+                    ]
+                },
 
-        function switchStandard(buttonElement, standardKey) {
-            // Drop active formatting on older state
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            // Instantly apply look to selected state
-            buttonElement.classList.add('active');
-
-            // Inject the data blocks smoothly
-            document.getElementById('cbse-math-text').innerText = structureMatrix[standardKey].cbseMath;
-            document.getElementById('cbse-science-text').innerText = structureMatrix[standardKey].cbseScience;
-            document.getElementById('crux-math-text').innerText = structureMatrix[standardKey].cruxMath;
-            document.getElementById('crux-science-text').innerText = structureMatrix[standardKey].cruxScience;
-        }
-
-        // Initialize display to show Std 5 instantly when the window mounts
-        window.onload = function() {
-            const firstButton = document.querySelector('.tab-btn');
-            switchStandard(firstButton, 'std5');
-        };
-    </script>
-</body>
-</html>
+                // Secondary Phase (Ages 15-18)
+                15: { phase: "secondary", label: "Age 15 (Std 10)", system: "Public Board Gateways",
+                    legacy: [
+                        { sub: "Mathematics", desc: "Memorizing standard trigonometric tables (sin/cos/tan) to calculate theoretical heights on worksheets." },
+                        { sub: "Science", desc: "Tracing light paths through abstract glass prism diagrams using hardcoded textbook equations." },
+                        { sub: "English", desc: "Writing rigid formal letters using specific formatting templates to earn precise exam marks." },
+                        { sub: "Social Sciences", desc: "Memorizing constitutional sub-clauses and structural lists of civic duties for national exams." }
+                    ],
+                    crux: [
+                        { sub: "Engineering Tech", desc: "Utilizing laser rangefinders and optical levels to calculate exact terrain slopes and local land elevations." },
+                        { sub: "Applied Physics", desc: "Assembling a functional parabolic solar cooker to measure actual thermal capture rates across diverse weather." },
+                        { sub: "Public Voice", desc: "Drafting formal, professional community service proposals and presenting them directly to municipal councils." },
+                        { sub: "Practical Civics", desc: "Navigating local civic offices to file real-world paperwork, track public requests, and map local zoning laws." }
+                    ]
+                },
+                16: { phase: "secondary", label: "Age 16 (Std 11)", system: "Stream Selection",
+                    legacy: [
+                        { sub: "Physics/Math", desc: "Deriving multi-step kinematics equations on paper using idealized friction-free environments." },
+                        { sub: "Chemistry/Bio", desc: "Memorizing complex molecular pathways or periodic trends to pass timed entry tests." },
+                        { sub: "Electives", desc: "Reading theoretical computer science books; writing short code snippets on physical paper sheets." }
+                    ],
+                    crux: [
+                        { sub: "Computational Logic", desc: "Writing, staging, and deploying clean data processing automation scripts via native Python environments." },
+                        { sub: "Systems Electronics", desc: "Sourcing parts, testing loads, and assembling customized desktop hardware or localized server storage arrays." },
+                        { sub: "Applied Enterprise", desc: "Registering a legal domain, launching web tools, and tracking conversion funnels using real traffic." }
+                    ]
+                },
+                17: { phase: "secondary", label: "Age 17 (Std 12)", system: "High-Stakes Finals",
+                    legacy: [
+                        { sub: "Advanced STEM", desc: "Solving intensive multi-variable calculus equations to match fixed answer sheets." },
+                        { sub: "Competitive Prep", desc: "Drilling multiple-choice trick questions for hours under simulated exam hall stress conditions." },
+                        { sub: "Humanities Track", desc: "Writing long-form theoretical essays summarizing macro-economic theories without local data." }
+                    ],
+                    crux: [
+                        { sub: "Applied Calculus", desc: "Writing custom code variables 
