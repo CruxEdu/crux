@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUX | Age 28 Matrix</title>
+    <style>
+        :root {
+            --bg-main: #090d16;
+            --bg-surface: #131926;
+            --bg-card: #1e2638;
+            --border-color: #26334d;
+            --text-main: #f3f4f6;
+            --text-muted: #94a3b8;
+            --cbse-color: #f87171;
+            --cbse-glow: rgba(248, 113, 113, 0.15);
+            --crux-color: #2dd4bf;
+            --crux-glow: rgba(45, 212, 191, 0.15);
+            --accent-blue: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* App Layout Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-surface);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, var(--accent-blue), var(--crux-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .brand p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .phase-navigation {
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            overflow-y: auto;
+        }
+
+        .phase-group {
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-blue);
+            font-weight: 700;
+            padding-left: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .age-link {
+            display: block;
+            color: var(--text-muted);
+            padding: 0.6rem 0.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .age-link:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-main);
+        }
+
+        .age-link.active {
+            background: rgba(45, 212, 191, 0.1);
+            color: var(--crux-color);
+            font-weight: 600;
+            border-left: 3px solid var(--crux-color);
+        }
+
+        /* Main View Window */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Content Scrollspace */
+        .workspace {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 2.5rem;
+        }
+
+        .view-header {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+        }
+        .view-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+        .view-header p {
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Comparison Split Layout Matrix */
+        .matrix-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .matrix-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .matrix-column h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .legacy-title { color: var(--cbse-color); }
+        .crux-title { color: var(--crux-color); }
+
+        /* Subject Cards */
+        .subject-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .subject-card:hover {
+            transform: translateY(-2px);
+        }
+        .legacy-card:hover { border-color: var(--cbse-color); box-shadow: 0 8px 24px var(--cbse-glow); }
+        .crux-card:hover { border-color: var(--crux-color); box-shadow: 0 8px 24px var(--crux-glow); }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .subject-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+        }
+        .legacy-tag { background: rgba(248, 113, 113, 0.1); color: var(--cbse-color); }
+        .crux-tag { background: rgba(45, 212, 191, 0.1); color: var(--crux-color); }
+        .principle-tag { background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); }
+
+        .card-body {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        .card-body b {
+            color: var(--text-main);
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .card-body li {
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Layout Overrides */
+        @media (max-width: 1024px) {
+            body { flex-direction: column; overflow: auto; height: auto; }
+            .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .phase-navigation { flex-direction: row; overflow-x: auto; padding: 1rem; }
+            .phase-group { flex-shrink: 0; }
+            .main-content { height: auto; }
+            .matrix-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .workspace { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <h1>CRUX MATRIX</h1>
+            <p>Independent Dynamic Nodes</p>
+        </div>
+        <nav class="phase-navigation">
+            
+            <div class="phase-group">
+                <div class="phase-title">Foundational Education</div>
+                <a href="age10.html" class="age-link">Age 10 (Std 5)</a>
+                <a href="age11.html" class="age-link">Age 11 (Std 6)</a>
+                <a href="age12.html" class="age-link">Age 12 (Std 7)</a>
+                <a href="age13.html" class="age-link">Age 13 (Std 8)</a>
+                <a href="age14.html" class="age-link">Age 14 (Std 9)</a>
+            </div>
+
+            <div class="phase-group">
+                <div class="phase-title">Advanced Scholastic</div>
+                <a href="age15.html" class="age-link">Age 15 (Std 10)</a>
+                <a href="age16.html" class="age-link">Age 16 (Std 11)</a>
+                <a href="age17.html" class="age-link">Age 17 (Std 12)</a>
+                <a href="age18.html" class="age-link">Age 18 (Transit)</a>
+            </div>
+
+            <div class="phase-group">
+                <div class="phase-title">Deep Specialization</div>
+                <a href="age19.html" class="age-link">Age 19 (Undergrad)</a>
+                <a href="age22.html" class="age-link">Age 22 (Work Entry)</a>
+                <a href="age24.html" class="age-link">Age 24 (Mid-Shift)</a>
+            </div>
+
+            <div class="phase-group">
+                <div class="phase-title">Sovereign Mastery</div>
+                <a href="age25.html" class="age-link">Age 25 (Stability)</a>
+                <a href="age26.html" class="age-link">Age 26 (Management)</a>
+                <a href="age27.html" class="age-link">Age 27 (Senior Track)</a>
+                <a href="age28.html" class="age-link active">Age 28 (Partnership)</a>
+                <a href="age29.html" class="age-link">Age 29 (Autonomy)</a>
+                <a href="age30.html" class="age-link">Age 30 (Maturity)</a>
+            </div>
+
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="workspace">
+            
+            <div class="view-header">
+                <h2>Age 28 — Partnership Vet &amp; Strategic Scale</h2>
+                <p>Analyzing critical relationship vectors, ecosystem structures, and long-horizon lifestyle constants.</p>
+            </div>
+
+            <div class="matrix-grid">
+                
+                <div class="matrix-column">
+                    <h3 class="legacy-title">Traditional Framework Track</h3>
+                    
+                    <div class="subject-card legacy-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Process Optimization</span>
+                            <span class="tag legacy-tag">Theory Check</span>
+                        </div>
+                        <div class="card-body">
+                            Focusing entirely on internal corporate cost reduction loops, reporting hierarchies, and navigating rigid compliance governance structures.
+                        </div>
+                    </div>
+
+                    <div class="subject-card legacy-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Societal Blueprint</span>
+                            <span class="tag legacy-tag">Theory Check</span>
+                        </div>
+                        <div class="card-body">
+                            Rushing into conventional marital alliances driven by external parental pressure or arbitrary social timeline checklists without verifying psychological foundations.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matrix-column">
+                    <h3 class="crux-title">CRUX Adaptive Ecosystem</h3>
+
+                    <div class="subject-card crux-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Ecosystem Strategy</span>
+                            <span class="tag crux-tag">Proof of Work</span>
+                        </div>
+                        <div class="card-body">
+                            Actively vetting, mentoring, and seeding investment assets into high-potential, early-stage open infrastructure builders.
+                        </div>
+                    </div>
+
+                    <div class="subject-card crux-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Partnership Vet: Inner Circle Dynamics</span>
+                            <span class="tag principle-tag">Partnership Matrix</span>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><b>The Mother Metric:</b> Talk to her mom. If her mom is difficult, bitter, or combative, she is highly likely to reflect those exact behavioral patterns over time. If her mom is genuinely kind and respectful, she may be (though it remains a strong variable, not an absolute guarantee) nice.</li>
+                                <li><b>The Father Matrix:</b> Talk to her dad. If her father is actively involved, protective, and healthy in her life, she inherits natural self-respect and discipline. She doesn't operate out of attention-seeking insecurities or validation deficits carried over from college environments.</li>
+                                <li><b>The Best Friend Variable:</b> Birds of a feather flock together. Unlike your prospective partner, the friend will not be as guarded around you. Ask her what they love doing together, and ask for gift ideas for your prospective bride. If the friend immediately suggests expensive hardware or luxury consumer goods (e.g., an iPhone), maintain high caution. If she suggests heartfelt, creative, or inexpensive items (e.g., flowers, custom cards), the alignment passes.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-card crux-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Partnership Vet: Strategic Scenario Probes</span>
+                            <span class="tag principle-tag">Partnership Matrix</span>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li><b>The Career Stress Test:</b> Present a hypothetical scenario where you get a job offer that doubles your current pay, but the company environment is brutally toxic, and the manager expects grueling hours, including weekends. If she immediately pressures you to accept solely for the incoming capital, consider terminating the relationship. If she immediately prioritizes your mental peace, health, and stability, she passes. If she is actively working and points out, <i>"I make XX amount already; our combined baseline is more than enough to protect your peace,"</i> she clears with distinction.</li>
+                                <li><b>The Kinship Allocation Probe:</b> Inform her that a close cousin is facing an immediate financial crisis and needs emergency capital with low odds of repayment. If she blocks it outright without seeking context, take note of the empathy deficit. If she asks for your justification first, and completely supports allocating the capital when she learns it is directly protecting his father's life-saving medical expenses, she passes.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-card crux-card">
+                        <div class="card-meta">
+                            <span class="subject-name">Partnership Operational Rules</span>
+                            <span class="tag principle-tag">Partnership Matrix</span>
+                        </div>
+                        <div class="card-body">
+                            <ul>
+                                <li>• <b>Contained Conflict:</b> A disagreement or internal argument must absolutely never leave the bedroom. Keep problems zero-knowledge from outsiders.</li>
+                                <li>• <b>Unified External Front:</b> Never speak ill of, or undermine, your partner in front of friends, colleagues, or peers. Public alignment must be absolute.</li>
+                                <li>• <b>Family Boundaries:</b> Never badmouth or attack your partner's family framework, regardless of external provocations.</li>
+                                <li>• <b>Fiscal Transparency:</b> Openly lay bare your exact financial positioning, compounding velocity, and future growth milestones. Ensure complete alignment on capital allocations before unification.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subject-card crux-card">
+                        <div class="card-meta">
+                            <span class="subject-name">The Long Horizon Perspective</span>
+                            <span class="tag principle-tag">Partnership Matrix</span>
+                        </div>
+                        <div class="card-body">
+                            Parents will eventually pass on; brothers and sisters will become fully occupied with their own families and local responsibilities. One day, your children will grow up and deploy onto their own life paths. Your partner is the singular human constant who will remain fixed directly by your side through the entirety of the timeline.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+  </html>
+  
