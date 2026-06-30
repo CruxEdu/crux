@@ -1,4 +1,4 @@
-    :root {
+:root {
     --bg-main: #090d16;
     --bg-surface: #131926;
     --bg-card: #1e2638;
@@ -27,7 +27,9 @@ body {
     overflow: hidden;
 }
 
-/* App Layout Sidebar Navigation */
+/* ==========================================
+   APP LAYOUT & SIDEBAR NAVIGATION
+   ========================================== */
 .sidebar {
     width: 280px;
     background-color: var(--bg-surface);
@@ -95,7 +97,9 @@ body {
     color: var(--text-main);
 }
 
-/* Main View Window */
+/* ==========================================
+   MAIN VIEW WINDOW & WORKSPACE
+   ========================================== */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -103,7 +107,6 @@ body {
     overflow: hidden;
 }
 
-/* Content Scrollspace */
 .workspace {
     flex-grow: 1;
     overflow-y: auto;
@@ -113,7 +116,9 @@ body {
     width: 100%;
 }
 
-/* Hero Section (NEW) */
+/* ==========================================
+   HERO SECTION
+   ========================================== */
 .hero-section {
     text-align: center;
     padding: 3rem 1rem 4rem 1rem;
@@ -152,7 +157,9 @@ body {
     line-height: 1.7;
 }
 
-/* Typography & Flow */
+/* ==========================================
+   TYPOGRAPHY & FLOW
+   ========================================== */
 .content-section {
     margin-bottom: 4rem;
 }
@@ -165,13 +172,77 @@ body {
     letter-spacing: -0.02em;
 }
 
+h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+h2:first-of-type {
+    margin-top: 0;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-blue);
+}
+
 p {
     margin-bottom: 1.25rem;
     color: #cbd5e1;
     font-size: 1.05rem;
 }
 
-/* Pillars Cards Layout (NEW) */
+/* ==========================================
+   LISTS & HIGHLIGHTS
+   ========================================== */
+ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    color: #cbd5e1;
+}
+
+li b {
+    color: var(--text-main);
+}
+
+.feature-list {
+    margin: 2rem 0;
+    padding-left: 1.5rem;
+}
+
+.feature-list li {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.meta-list {
+    list-style: none;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-blue);
+}
+
+.highlight {
+    color: var(--crux-color);
+    font-weight: 600;
+}
+
+/* ==========================================
+   PILLARS GRID (4 PILLARS)
+   ========================================== */
 .pillars-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -235,33 +306,9 @@ p {
     top: 0;
 }
 
-/* Lists and Highlights */
-.feature-list {
-    margin: 2rem 0;
-    padding-left: 1.5rem;
-}
-
-.feature-list li {
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-}
-
-.meta-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-    background: rgba(255,255,255,0.02);
-    padding: 1rem;
-    border-radius: 8px;
-    border-left: 3px solid var(--accent-blue);
-}
-
-.highlight {
-    color: var(--crux-color);
-    font-weight: 700;
-}
-
-/* Diagram & Images */
+/* ==========================================
+   MEDIA (IMAGES, DIAGRAMS, BLOCKQUOTES)
+   ========================================== */
 .diagram-container {
     background: #0d1117;
     border: 1px solid var(--border-color);
@@ -282,16 +329,21 @@ p {
     overflow: hidden;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background-color: var(--bg-card); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-showcase img {
     width: 100%;
+    max-height: 450px; 
     height: auto;
     display: block;
-    object-fit: cover;
+    object-fit: cover; 
+    object-position: center; 
 }
 
-/* Blockquotes */
 blockquote {
     background: var(--bg-surface);
     border-left: 4px solid var(--crux-color);
@@ -306,7 +358,14 @@ blockquote p {
     color: #cbd5e1;
 }
 
-/* Tables Optimization */
+blockquote b {
+    color: var(--crux-color);
+    font-style: normal;
+}
+
+/* ==========================================
+   TABLE OPTIMIZATIONS
+   ========================================== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -352,7 +411,114 @@ tr:last-child td {
     margin-top: 2.5rem;
 }
 
-/* Sticky Bottom Navigation Elements */
+/* Matrix Detail Grid Wrapper System (For Milestone Pages) */
+.table-container-matrix {
+    width: 100%;
+    max-width: 1100px;
+    margin: 2rem auto;
+    overflow-x: auto;
+    background: var(--bg-surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+}
+
+.table-container-matrix table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+    table-layout: fixed;
+    margin: 0;
+}
+
+.table-container-matrix th {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    padding: 1rem 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.table-container-matrix th.category-col { width: 20%; }
+.table-container-matrix th.traditional-col { width: 40%; }
+.table-container-matrix th.crux-col { width: 40%; }
+
+.table-container-matrix td {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+    word-wrap: break-word;
+}
+
+.table-container-matrix tr:last-child td {
+    border-bottom: none;
+}
+
+.table-container-matrix .category-cell {
+    font-weight: 700;
+    color: var(--accent-blue);
+    background-color: rgba(56, 189, 248, 0.03);
+    border-right: 1px solid var(--border-color);
+}
+
+.table-container-matrix .traditional-cell {
+    background-color: rgba(248, 113, 113, 0.02);
+    border-right: 1px solid var(--border-color);
+}
+
+.table-container-matrix .crux-cell {
+    background-color: rgba(45, 212, 191, 0.02);
+}
+
+.table-container-matrix .badge-wrong {
+    color: var(--cbse-color);
+    background-color: rgba(248, 113, 113, 0.1);
+    border: 1px solid rgba(248, 113, 113, 0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.table-container-matrix .badge-right {
+    color: var(--crux-color);
+    background-color: rgba(45, 212, 191, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.table-container-matrix .cell-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.table-container-matrix .traditional-cell .cell-title { color: var(--cbse-color); }
+.table-container-matrix .crux-cell .cell-title { color: var(--crux-color); }
+
+.table-container-matrix .cell-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   STICKY BOTTOM NAVIGATION (MOBILE)
+   ========================================== */
 .sticky-bottom-bar {
     display: none;
     position: fixed;
@@ -393,7 +559,9 @@ tr:last-child td {
     background: rgba(255, 255, 255, 0.02);
 }
 
-/* Responsive Layout Overrides */
+/* ==========================================
+   RESPONSIVE LAYOUT OVERRIDES
+   ========================================== */
 @media (max-width: 1024px) {
     body { flex-direction: column; overflow: auto; height: auto; }
     .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
@@ -410,5 +578,23 @@ tr:last-child td {
     .pillars-grid {
         grid-template-columns: 1fr;
     }
+
+    .table-container-matrix table, 
+    .table-container-matrix thead, 
+    .table-container-matrix tbody, 
+    .table-container-matrix th, 
+    .table-container-matrix td, 
+    .table-container-matrix tr { 
+        display: block; 
+        width: auto !important;
     }
-    
+    .table-container-matrix thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .table-container-matrix tr { 
+        border: 1px solid var(--border-color); 
+        margin-bottom: 1.5rem;
+    }
+}
