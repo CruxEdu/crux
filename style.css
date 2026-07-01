@@ -5,10 +5,11 @@
     --border-color: #26334d;
     --text-main: #f3f4f6;
     --text-muted: #94a3b8;
+    --cbse-color: #f87171;
+    --cbse-glow: rgba(248, 113, 113, 0.15);
     --crux-color: #2dd4bf;
     --crux-glow: rgba(45, 212, 191, 0.15);
     --accent-blue: #38bdf8;
-    --cbse-color: #f87171;
 }
 
 * {
@@ -21,7 +22,7 @@
 body {
     background-color: var(--bg-main);
     color: var(--text-main);
-    line-height: 1.6;
+    line-height: 1.5;
     display: flex;
     height: 100vh;
     overflow: hidden;
@@ -95,6 +96,13 @@ body {
     color: var(--text-main);
 }
 
+.age-link.active {
+    background: rgba(45, 212, 191, 0.1);
+    color: var(--crux-color);
+    font-weight: 600;
+    border-left: 3px solid var(--crux-color);
+}
+
 /* Main View Window */
 .main-content {
     flex-grow: 1;
@@ -107,266 +115,105 @@ body {
 .workspace {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 3rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    width: 100%;
+    padding: 2.5rem;
 }
 
-/* Typography & Custom Section Formatting */
-h2 {
-    font-size: 2.2rem;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-main);
+.view-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
 }
-
-h2:first-of-type {
-    margin-top: 0;
-}
-
-h3 {
-    font-size: 1.4rem;
+.view-header h2 {
+    font-size: 2rem;
     font-weight: 700;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
-    color: var(--accent-blue);
+    letter-spacing: -0.03em;
 }
-
-p {
-    margin-bottom: 1.25rem;
-    color: #cbd5e1;
-    font-size: 1.05rem;
-}
-
-ul, ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-}
-
-li {
-    margin-bottom: 0.5rem;
-    color: #cbd5e1;
-}
-
-li b {
-    color: var(--text-main);
-}
-
-.highlight {
-    color: var(--crux-color);
-    font-weight: 600;
-}
-
-.text-sub-muted {
+.view-header p {
     color: var(--text-muted);
+    margin-top: 0.25rem;
 }
 
-/* ASCII Diagram Box */
-.diagram-container {
-    background: #0d1117;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    font-family: monospace;
-    white-space: pre;
-    overflow-x: auto;
-    color: var(--crux-color);
-    text-align: center;
+/* Comparison Split Layout Matrix */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
 }
 
-/* Callout / Blockquote Blocks */
-blockquote {
-    background: var(--bg-surface);
-    border-left: 4px solid var(--crux-color);
-    padding: 1.5rem;
-    border-radius: 0 12px 12px 0;
-    margin: 2rem 0;
-    font-style: italic;
+.matrix-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
-blockquote p {
-    margin-bottom: 0;
-    color: #cbd5e1;
-}
-
-blockquote b {
-    color: var(--crux-color);
-    font-style: normal;
-}
-
-/* Standalone Content Table Custom Styling */
-.workspace table:not(.matrix-table) {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0 2.5rem 0;
-    font-size: 0.95rem;
-    background: var(--bg-surface);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-}
-
-.workspace table:not(.matrix-table) th {
-    background: var(--bg-card);
-    color: var(--text-main);
-    text-align: left;
-    padding: 1rem;
+.matrix-column h3 {
+    font-size: 1.25rem;
     font-weight: 700;
+    padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
+.legacy-title { color: var(--cbse-color); }
+.crux-title { color: var(--crux-color); }
 
-.workspace table:not(.matrix-table) td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
-    color: #cbd5e1;
-    vertical-align: top;
-}
-
-.workspace tr:last-child td {
-    border-bottom: none;
-}
-
-.legacy-section-title {
-    color: var(--cbse-color);
-    border-bottom: 1px solid rgba(248, 113, 113, 0.2);
-    padding-bottom: 0.25rem;
-    margin-top: 2rem;
-}
-
-.crux-section-title {
-    color: var(--crux-color);
-    border-bottom: 1px solid rgba(45, 212, 191, 0.2);
-    padding-bottom: 0.25rem;
-    margin-top: 2rem;
-}
-
-/* Image container styling */
-.image-break-container {
-    width: 100%; 
-    margin: 2.5rem 0; 
-    border-radius: 12px; 
-    overflow: hidden; 
-    border: 1px solid var(--border-color); 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-
-.image-break-container img {
-    width: 100%; 
-    height: auto; 
-    display: block; 
-    object-fit: cover;
-}
-
-/* Embedded Comparison Grid Matrix Styling */
-.table-container-matrix {
-    width: 100%;
-    max-width: 1200px;
-    margin: 2rem auto;
-    overflow-x: auto;
+/* Subject Cards */
+.subject-card {
     background: var(--bg-surface);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.subject-card:hover {
+    transform: translateY(-2px);
+}
+.legacy-card:hover { border-color: var(--cbse-color); box-shadow: 0 8px 24px var(--cbse-glow); }
+.crux-card:hover { border-color: var(--crux-color); box-shadow: 0 8px 24px var(--crux-glow); }
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
 }
 
-.table-container-matrix table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    font-size: 0.95rem;
-    table-layout: fixed;
-}
-
-.table-container-matrix th {
-    background-color: var(--bg-card);
-    color: var(--text-main);
-    padding: 1.1rem 1.25rem;
+.subject-name {
+    font-size: 1.1rem;
     font-weight: 700;
+    color: var(--text-main);
+}
+
+.tag {
+    font-size: 0.7rem;
     text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    border-bottom: 2px solid var(--border-color);
-}
-
-.table-container-matrix th.category-col { width: 18%; }
-.table-container-matrix th.traditional-col { width: 41%; }
-.table-container-matrix th.crux-col { width: 41%; }
-
-.table-container-matrix td {
-    padding: 1.25rem;
-    border-bottom: 1px solid var(--border-color);
-    vertical-align: top;
-    word-wrap: break-word;
-    line-height: 1.6;
-}
-
-.table-container-matrix .category-cell {
     font-weight: 700;
-    color: var(--accent-blue);
-    background-color: rgba(56, 189, 248, 0.02);
-    border-right: 1px solid var(--border-color);
-}
-
-.table-container-matrix .traditional-cell {
-    background-color: rgba(248, 113, 113, 0.01);
-    border-right: 1px solid var(--border-color);
-}
-
-.table-container-matrix .crux-cell {
-    background-color: rgba(45, 212, 191, 0.01);
-}
-
-.table-container-matrix .badge-wrong {
-    color: var(--cbse-color);
-    background-color: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.3);
-    padding: 3px 8px;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem;
     border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    display: inline-block;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
 }
+.legacy-tag { background: rgba(248, 113, 113, 0.1); color: var(--cbse-color); }
+.crux-tag { background: rgba(45, 212, 191, 0.1); color: var(--crux-color); }
+.principle-tag { background: rgba(56, 189, 248, 0.1); color: var(--accent-blue); }
 
-.table-container-matrix .badge-right {
-    color: var(--crux-color);
-    background-color: rgba(45, 212, 191, 0.1);
-    border: 1px solid rgba(45, 212, 191, 0.3);
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    display: inline-block;
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-}
-
-.table-container-matrix .cell-text {
-    font-size: 0.9rem;
-    margin: 0;
+.card-body {
+    font-size: 0.95rem;
     color: #cbd5e1;
 }
 
-/* Secondary table layout style specificity */
-.rubric-table th {
-    background: var(--bg-card); 
-    color: var(--text-main); 
-    padding: 1rem; 
-    border-bottom: 2px solid var(--border-color);
+.card-body b {
+    color: var(--text-main);
 }
 
-.rubric-table td {
-    padding: 1rem; 
-    border-bottom: 1px solid var(--border-color);
+.card-body ul {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.rubric-table tr:last-child td {
-    border-bottom: none;
+.card-body li {
+    margin-bottom: 1rem;
 }
 
 /* Responsive Layout Overrides */
@@ -376,59 +223,6 @@ blockquote b {
     .phase-navigation { flex-direction: row; overflow-x: auto; padding: 1rem; }
     .phase-group { flex-shrink: 0; }
     .main-content { height: auto; }
-    .workspace { padding: 2rem 1.5rem; }
+    .matrix-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .workspace { padding: 1.5rem; }
 }
-
-@media screen and (max-width: 768px) {
-    .table-container-matrix table, 
-    .table-container-matrix thead, 
-    .table-container-matrix tbody, 
-    .table-container-matrix th, 
-    .table-container-matrix td, 
-    .table-container-matrix tr { 
-        display: block; 
-        width: auto !important;
-    }
-    .table-container-matrix thead tr { 
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    .table-container-matrix tr { 
-        border: 1px solid var(--border-color); 
-        margin-bottom: 2rem;
-        border-radius: 8px;
-        background: var(--bg-surface);
-        overflow: hidden;
-    }
-    .table-container-matrix td { 
-        border: none !important;
-        position: relative;
-        padding-left: 35% !important; 
-        border-bottom: 1px solid rgba(38, 51, 77, 0.5) !important;
-    }
-    .table-container-matrix td:last-child {
-        border-bottom: none !important;
-    }
-    .table-container-matrix td:before { 
-        position: absolute;
-        top: 1.25rem;
-        left: 1rem;
-        width: 25%; 
-        font-weight: 700;
-        color: var(--text-muted);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    .table-container-matrix td.category-cell:before { content: "Category"; }
-    .table-container-matrix td.traditional-cell:before { content: "Legacy"; }
-    .table-container-matrix td.crux-cell:before { content: "CRUX Node"; }
-    
-    .table-container-matrix td.category-cell {
-        background-color: var(--bg-card);
-        padding-left: 1rem !important;
-    }
-    .table-container-matrix td.category-cell:before { content: "" !important; }
-    }
-    
