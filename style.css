@@ -216,6 +216,48 @@ body {
     margin-bottom: 1rem;
 }
 
+
+/* Table & Blockquote Styles */
+.table-container {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    margin: 2rem 0;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+th {
+    color: var(--accent-blue);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.brutal {
+    color: var(--cbse-color);
+}
+
+blockquote {
+    background: rgba(56, 189, 248, 0.04);
+    border-left: 4px solid var(--accent-blue);
+    padding: 1.25rem;
+    border-radius: 0 8px 8px 0;
+}
+
+
+
 /* Responsive Layout Overrides */
 @media (max-width: 1024px) {
     body { flex-direction: column; overflow: auto; height: auto; }
